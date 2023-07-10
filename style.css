@@ -413,7 +413,7 @@ h5 {
 
 /* ===== MEDIA QUERY ====== */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .content_container {
     position: relative;
     display: block;
