@@ -1,0 +1,73 @@
+//Update cart data and link
+async function changeCartDataAndLink() {
+    fetch("/cart.js").then((cartPromise) => {
+      cartPromise.json().then((cart) => {
+        if (cart.item_count > 0) {
+          shareCartData = cart;
+          cartPermalink = shorthash(
+            Date.now().toString(36) + Math.random().toString(36).substr(2)
+          );
+          cartToken = shorthash(shareCartData.token);
+          sharelink =
+            window.location.origin +
+            "/a/cart?cart-token=" +
+            cartToken +
+            "&link-token=" +
+            cartPermalink;
+          if (document.getElementById("show_cart_permalink")) {
+            document.getElementById("show_cart_permalink").value = sharelink;
+          }
+          const cartItems = shareCartData.items;
+          cartProductsImages = [];
+          cartProductsHref = [];
+          for (var i = 0; i < cartItems.length; i++) {
+            cartProductsImages.push(cartItems[i].image);
+            cartProductsHref.push(cartItems[i].url);
+          }
+  
+          if (currentItemsInCart > 0 && modalInjected) {
+            currentItemsInCart = cart.item_count;
+            if (
+              document.getElementsByClassName("bevy_share_button").length <= 0
+            ) {
+              injectBevyCartDrawerButton();
+              setTimeout(() => {
+                injectBevyCartDrawerButton();
+              }, 2000);
+            }
+          } else {
+            if (!modalInjected) {
+              bevyShareCartAddInPage();
+            } else {
+              currentItemsInCart = cart.item_count;
+              if (
+                document.getElementsByClassName("bevy_share_button").length > 0
+              ) {
+                injectEmbedButton();
+              } else {
+                injectBevyCartDrawerButton();
+                setTimeout(() => {
+                  injectBevyCartDrawerButton();
+                }, 5000);
+              }
+            }
+          }
+        } else {
+          const bevyCustomMessageElements = document.getElementsByClassName(
+            "div_share_cart_message"
+          );
+          for (
+            var bCusMesElNum = 0;
+            bCusMesElNum < bevyCustomMessageElements.length;
+            bCusMesElNum++
+          ) {
+            bevyCustomMessageElements[bCusMesElNum].style.display = "none";
+          }
+          //remove share_cart_wrap
+          currentItemsInCart = cart.item_count;
+          removeElementsByClass("share_cart_wrap");
+          removeElementsByClass("bevy_share_button");
+        }
+      });
+    });
+}

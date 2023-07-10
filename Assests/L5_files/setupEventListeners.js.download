@@ -1,0 +1,64 @@
+//Functions for setup event listeners cart change, resize
+function setupEventListeners() {
+    window.addEventListener("resize", function (event) {
+      var textInput = document.getElementsByClassName("share_cart_modal_middle");
+      if (
+        textInput &&
+        textInput.length > 0 &&
+        textInput[0].getElementsByClassName("social_link").length <= 0
+      ) {
+        var element = textInput[0];
+        var children = element.children;
+        var parentWidth = element.offsetWidth;
+        var totalChildWidth = 0;
+        for (var i = 0; i < children.length; i++) {
+          totalChildWidth = children[i].offsetWidth + totalChildWidth;
+        }
+        if (parentWidth - totalChildWidth <= 20) {
+          element.style.flexDirection = "column";
+          for (var i = 0; i < children.length; i++) {
+            children[i].style.marginRight = "0px";
+            if (i < children.length - 1) children[i].style.marginBottom = "20px";
+          }
+        } else {
+          element.style.removeProperty("flex-direction");
+          for (var i = 0; i < children.length; i++) {
+            children[i].style.removeProperty("margin-right");
+            children[i].style.removeProperty("margin-bottom");
+          }
+        }
+      }
+  
+      const labelShareButton = document.getElementsByClassName(
+        "share_cart_modal_sociallinks_label"
+      )[0];
+      if (labelShareButton) {
+        const labelShareButtonsChildrens = labelShareButton.children;
+        var maxSocialBtnWidth = 0;
+        var totalSocialBtnWidth = 0;
+        for (var indx = 0; indx < labelShareButtonsChildrens.length; indx++) {
+          labelShareButtonsChildrens[indx].style.width = "unset";
+          if (labelShareButtonsChildrens[indx].offsetWidth > maxSocialBtnWidth) {
+            maxSocialBtnWidth = labelShareButtonsChildrens[indx].offsetWidth;
+          }
+          totalSocialBtnWidth =
+            totalSocialBtnWidth + labelShareButtonsChildrens[indx].offsetWidth;
+        }
+        if (
+          maxSocialBtnWidth > 0 &&
+          totalSocialBtnWidth > labelShareButton.offsetWidth - 40
+        ) {
+          for (var indx = 0; indx < labelShareButtonsChildrens.length; indx++) {
+            labelShareButton.style.justifyContent = "center";
+            labelShareButtonsChildrens[indx].style.width =
+              maxSocialBtnWidth + "px";
+          }
+        } else if (
+          maxSocialBtnWidth > 0 &&
+          totalSocialBtnWidth <= labelShareButton.offsetWidth - 40
+        ) {
+          labelShareButton.style.justifyContent = "space-around";
+        }
+      }
+    });
+}

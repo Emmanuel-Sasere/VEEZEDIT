@@ -1,0 +1,7 @@
+(function (){
+    var element = document.createElement('script')
+    element.type = "text/javascript";
+    element.src = "https://res.etranslate.io/etweb/selector.js?v=1684480782"
+    element.onload = window.etranslate_check
+    document.body.appendChild(element)
+})()

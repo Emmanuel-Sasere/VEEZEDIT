@@ -1,0 +1,64 @@
+function call_setcart() {
+    var customMessage = null;
+    if (toggleContentShareMsg === true) {
+      customMessage = $("#customized_msg_input").data("emojioneArea").getText();
+    }
+  
+    const inputDataToStore = [];
+  
+    if (window.location.pathname === "/cart") {
+      var inputs = document.querySelectorAll("input");
+      for (var i = 0; i < inputs.length; i++) {
+        if (
+          inputs[i].type === "text" &&
+          inputs[i].id !== "customized_msg_input" &&
+          inputs[i].id !== "show_cart_permalink" &&
+          inputs[i].className !== "quantity-selector__value"
+        ) {
+          if (inputs[i].value !== "") {
+            inputDataToStore.push({
+              id: inputs[i].id,
+              classNames: inputs[i].className,
+              value: inputs[i].value,
+            });
+          }
+        }
+      }
+    }
+  
+    var settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        shop: Shopify.shop,
+        cartId: cartPermalink,
+        cart: shareCartData,
+        dayChangeCode: shareCartCurrentStateData.dayChangeCode,
+        visitChangeCode: shareCartCurrentStateData.visitChangeCode,
+        shareExpNmbrEnabled: shareCartCurrentStateData.shareExpNmbrEnabled,
+        shareExpNmbr: shareCartCurrentStateData.shareExpNmbr,
+        shareExpDayEnabled: shareCartCurrentStateData.shareExpDayEnabled,
+        shareExpDay: shareCartCurrentStateData.shareExpDay,
+        customMessage: customMessage,
+        inputData: inputDataToStore,
+      }),
+    };
+    fetch(shareCartUrl + "/setcart", settings).then((data) => {});
+  
+    setTimeout(function () {
+      cartPermalink = shorthash(
+        Date.now().toString(36) + Math.random().toString(36).substr(2)
+      );
+      cartToken = shorthash(shareCartData.token);
+      sharelink =
+        window.location.origin +
+        "/a/cart?cart-token=" +
+        cartToken +
+        "&link-token=" +
+        cartPermalink;
+      document.getElementById("show_cart_permalink").value = sharelink;
+    }, 3000);
+}

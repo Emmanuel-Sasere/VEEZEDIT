@@ -1,0 +1,144 @@
+console.log(
+  "%c Bevy Share Cart is loading...⌛",
+  "background: #3553ee; color: #fff; padding: 5px; border-radius: 3px;"
+);
+
+window.onload = function () {
+  fetch("/cart.js", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then(async (cartData) => {
+      if (
+        cartData.item_count > 0 &&
+        shareCartCurrentStateData.checked &&
+        shareCartCurrentStateData.checked === true &&
+        (!shareCartCurrentStateData.loggedInUserEnabledOnly ||
+          shareCartCurrentStateData.loggedInUserEnabledOnly === false ||
+          (shareCartCurrentStateData.loggedInUserEnabledOnly === true &&
+            isCustomerLoggedInBevy &&
+            tagMatched))
+      ) {
+        if (window.location.pathname === "/cart") {
+          var cartInputsData = [];
+          if (cartData.attributes.cartInputsData) {
+            cartInputsData = JSON.parse(cartData.attributes.cartInputsData);
+          }
+          for (var i = 0; i < cartInputsData.length; i++) {
+            if (cartInputsData[i].id) {
+              if (document.getElementById(cartInputsData[i].id)) {
+                document.getElementById(cartInputsData[i].id).value =
+                  cartInputsData[i].value;
+              }
+            } else {
+              if (document.getElementsByClassName(cartInputsData[i].classNames))
+                document.getElementsByClassName(
+                  cartInputsData[i].classNames
+                )[0].value = cartInputsData[i].value;
+            }
+          }
+        }
+      }
+    });
+};
+
+function bevyShareCartAddInPage() {
+  if (window.location.search == "?preview=true") {
+    var settings = {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    // fetch(url + `/getpreviewstyles?store=${Shopify.shop}`, settings)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     const styleNode = document.createElement("style");
+    //     //styleNode.textContent = data.data;
+    //     var x = data.data.metafields[0].value.replace(
+    //       /\r?\n|\r|\\n|\\r|\n/g,
+    //       ""
+    //     );
+    //     x = x.substring(1, x.length - 1);
+    //     styleNode.textContent = x;
+    //     document.documentElement.appendChild(styleNode);
+    //   });
+    htmltoshow += markups.close_preview;
+  }
+  fetch("/cart.js", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then(async (cartData) => {
+      if (
+        cartData.item_count > 0 &&
+        shareCartCurrentStateData.checked &&
+        shareCartCurrentStateData.checked === true &&
+        (!shareCartCurrentStateData.loggedInUserEnabledOnly ||
+          shareCartCurrentStateData.loggedInUserEnabledOnly === false ||
+          (shareCartCurrentStateData.loggedInUserEnabledOnly === true &&
+            isCustomerLoggedInBevy &&
+            tagMatched))
+      ) {
+        currentItemsInCart = cartData.item_count;
+        shareCartData = cartData;
+        setupEventListeners();
+        injectBevyShareModal(cartData);
+        if (document.getElementsByClassName("bevy_share_button").length > 0) {
+          injectEmbedButton();
+        } else {
+          // await injectBevyShareButton(cartData);
+          // loadCartCustomMessage(cartData);
+          injectBevyCartDrawerButton();
+          setTimeout(() => {
+            injectBevyCartDrawerButton();
+          }, 5000);
+        }
+      }
+    });
+}
+
+//Share button, modal and others will be injected in page after the scripts loaded by callback function loadScriptAndExecuteCallback
+if (typeof jQuery == "undefined") {
+  sequentialFileLoader.loadScript([
+    "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js",
+  ]);
+} else {
+  var vernums = jQuery.fn.jquery.split(".");
+  if (!$) {
+    $ = jQuery;
+  }
+  if (
+    parseInt(vernums[0]) > 1 ||
+    (parseInt(vernums[0]) > 0 && parseInt(vernums[1]) > 8) ||
+    (parseInt(vernums[0]) > 0 &&
+      parseInt(vernums[1]) >= 8 &&
+      parseInt(vernums[2]) >= 3)
+  ) {
+    sequentialFileLoader.loadScript([
+      "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js",
+    ]);
+  } else {
+    sequentialFileLoader.loadScript([
+      "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js",
+    ]);
+  }
+}

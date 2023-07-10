@@ -1,0 +1,37 @@
+// Changeit
+var shareCartUrl = "https://shareapp.bevycommerce.com";
+
+var shoppingcart = "";
+var shareyourcart = "";
+var buttontext = "";
+var notetext = "";
+var copyConfirmationText = "";
+var copyButtonText = "";
+var iscopybuttoninside;
+var isdisplaysociallinks;
+var htmltoshow = "";
+var htmltoshowModal = "";
+var hasLabel = "";
+var socialwraptype = "";
+var shareicon = "";
+var icontoshow = "";
+var cartPermalink = "";
+var sharelink = "";
+var cartToken = "";
+var shareCartData = null;
+var toggleContentShareMsg = false;
+var iCartApp = false;
+var shareParentStyleCssAdded = false;
+var cartDrawerElement;
+var cartDrawerBevyShareButtonPosition = null;
+var currentItemsInCart = 0;
+var modalInjected = false;
+
+//Settings for fetch call
+var settings = {
+    method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+};

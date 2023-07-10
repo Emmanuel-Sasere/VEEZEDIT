@@ -1,0 +1,915 @@
+//Function for inject cart drawer button
+function injectBevyCartDrawerButton() {
+  if (typeof emojione != "undefined") {
+    var cartDrawerElementHref0 = document.querySelectorAll(
+      `a[href="${cartProductsHref[0]}"]`
+    );
+    var cartDrawerElementminicartApp = document.querySelectorAll(
+      ".qimify-minicart-img-wrapper"
+    );
+
+    setTimeout(function () {
+      let cartDrawerElementQuickifyApp = document.getElementById(
+        "qikify-stickycart-v2-app"
+      );
+      let cartDrawerElementWowcartDrawer =
+        document.getElementById("wowcart-drawer");
+
+      let cartDrawerElementStickyCartApp = document.querySelector(
+        ".giraffly_Off-Canvas"
+      );
+
+      if (cartDrawerElementStickyCartApp !== null) {
+        var sharecartQuickifyApp = document.querySelector(".share_cart_wrap");
+        sharecartQuickifyApp.style.padding = "18px";
+      } else if (cartDrawerElementQuickifyApp !== null) {
+        var sharecartQuickifyApp = document.querySelector(".share_cart_wrap");
+        sharecartQuickifyApp.style.padding = "25px";
+      } else if (cartDrawerElementWowcartDrawer !== null) {
+        var sharecartQuickifyApp = document.querySelector(".share_cart_wrap");
+        sharecartQuickifyApp.style.padding = "20px";
+      } else {
+      }
+    }, 2000);
+
+    var cartDrawerElementminicartApp = document.querySelectorAll(
+      ".qimify-minicart-img-wrapper"
+    );
+
+    const miniCart = document.getElementsByClassName(
+      "mini-cart__line-item-list"
+    );
+    const lineItemTable = document.getElementsByClassName("line-item-table");
+
+    const cartDrawerButtonPositionList = [];
+    if (
+      !(miniCart && miniCart[0]) &&
+      !(
+        lineItemTable &&
+        lineItemTable[0] &&
+        window.location.pathname === "/cart"
+      )
+    )
+      for (
+        var cartDrawerIdentifyIndex = 0;
+        cartDrawerIdentifyIndex < cartDrawerElementHref0.length;
+        cartDrawerIdentifyIndex++
+      ) {
+        let cartHref = cartDrawerElementHref0[cartDrawerIdentifyIndex];
+        let cartHrefApp = cartDrawerElementminicartApp[0];
+        let cnt = 13;
+        let flag = 0;
+        while (cnt--) {
+          const elementTextConent = cartHref.textContent
+            .toLowerCase()
+            .replace(/[^a-zA-Z0-9]/g, "");
+          const elementTextConentMinicartApp = cartHrefApp?.textContent
+            .toLowerCase()
+            .replace(/[^a-zA-Z]/g, "");
+          if (
+            ((elementTextConent.includes("checkout") ||
+              elementTextConent.includes("purchase") ||
+              elementTextConent.includes("acquisto")) &&
+              (elementTextConent.includes("cart") ||
+                elementTextConent.includes("total") ||
+                elementTextConent.includes("subtotal") ||
+                elementTextConent.includes(shareCartData.total_price))) ||
+            (elementTextConentMinicartApp?.includes("total") &&
+              elementTextConentMinicartApp?.includes("cart") &&
+              elementTextConentMinicartApp?.includes("subtotal")) ||
+            (cartHref.tagName.toLowerCase() === "form" &&
+              cartHref.getAttribute("action").toLowerCase() === "/cart")
+          ) {
+            flag = 1;
+            break;
+          }
+          cartHref = cartHref.parentElement;
+          cartHrefApp = cartHrefApp?.parentElement;
+        }
+        if (flag) {
+          if (document.getElementById("slidecarthq")) {
+            htmltoshow = `<div class="share_cart_wrap" style="padding-right: 10px; padding-left: 20px;">
+          <div class="share_cart_header share_cart_flex">
+            <h2 class="id_h2_shoppingcart share_cart_heading share_cart_heading1"></h2>
+            <button type='button' class="share_cart_btn share_cart_flex">
+              <div class="id_div_svgiconbuttontext">
+                <span class="id_span_svgicon"></span>
+                <span class="id_span_buttontext" class="ml-1"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+        `;
+          }
+          if (cartHrefApp !== undefined) {
+            cartDrawerBevyShareButtonPosition = cartHrefApp;
+          } else {
+            cartDrawerBevyShareButtonPosition = cartHref;
+            cartDrawerButtonPositionList.push(cartHref);
+          }
+        }
+      }
+
+    for (
+      var cartDrawerButtonPositionNumber = 0;
+      cartDrawerButtonPositionNumber < cartDrawerButtonPositionList.length;
+      cartDrawerButtonPositionNumber++
+    ) {
+      cartDrawerBevyShareButtonPosition =
+        cartDrawerButtonPositionList[cartDrawerButtonPositionNumber];
+      if (
+        cartDrawerBevyShareButtonPosition.parentNode.getElementsByClassName(
+          "share_cart_wrap"
+        ).length <= 0
+      ) {
+        var formValid = false;
+        if (
+          (cartDrawerBevyShareButtonPosition.parentNode.tagName.toLowerCase() ===
+            "form" &&
+            cartDrawerBevyShareButtonPosition.parentNode
+              .getAttribute("action")
+              .toLowerCase() === "/cart") ||
+          cartDrawerBevyShareButtonPosition.parentNode.querySelectorAll(
+            'form[action="/cart"]'
+          ).length > 0
+        ) {
+          var formElement =
+            cartDrawerBevyShareButtonPosition.parentNode.querySelectorAll(
+              'form[action="/cart"]'
+            )[0];
+
+          if (
+            cartDrawerBevyShareButtonPosition.parentNode.tagName.toLowerCase() ===
+              "form" &&
+            cartDrawerBevyShareButtonPosition.parentNode
+              .getAttribute("action")
+              .toLowerCase() === "/cart"
+          ) {
+            formElement = cartDrawerBevyShareButtonPosition.parentNode;
+            cartDrawerBevyShareButtonPosition =
+              cartDrawerBevyShareButtonPosition.parentNode;
+          }
+
+          const replacedTextContent = formElement.textContent
+            .toLowerCase()
+            .replace(/[^A-Z]/gi, "");
+          if (
+            formElement.querySelectorAll(`a[href="${cartProductsHref[0]}"]`)
+              .length > 0 ||
+            replacedTextContent.includes("cart") ||
+            replacedTextContent.includes("total")
+          ) {
+            if (
+              formElement.id === "mini-cart" ||
+              formElement.className.includes("cart-recap")
+            ) {
+              formValid = false;
+            } else {
+              formValid = true;
+            }
+          }
+        }
+        if (!formValid) {
+          // var attributesList = "";
+          // for (const name of cartDrawerBevyShareButtonPosition.getAttributeNames()) {
+          //   const value = cartDrawerBevyShareButtonPosition.getAttribute(name);
+          //   attributesList = attributesList + `[${name}="${value}"]`;
+          // }
+          // cartDrawerBevyShareButtonPosition = document.querySelector(attributesList);
+          var htmlShareButton = createElementFromHTML(htmltoshow);
+          // cartDrawerBevyShareButtonPosition.appendChild(htmlShareButton);
+          if (
+            shareCartCurrentStateData.socialSharePositionBottomStatus === true
+          ) {
+            // cartDrawerBevyShareButtonPosition.insertBefore(
+            //   htmlShareButton,
+            //   cartDrawerBevyShareButtonPosition.children[2]
+            // );
+            cartDrawerBevyShareButtonPosition.appendChild(htmlShareButton);
+          } else {
+            if (
+              cartDrawerBevyShareButtonPosition.children.length > 0 &&
+              (cartDrawerBevyShareButtonPosition.offsetHeight > 0 ||
+                cartDrawerBevyShareButtonPosition.id === "CartContainer")
+            ) {
+              if (
+                cartDrawerBevyShareButtonPosition.children.length === 2 ||
+                cartDrawerBevyShareButtonPosition.children[0].className.includes(
+                  "drawer__scrollable"
+                )
+              ) {
+                cartDrawerBevyShareButtonPosition.insertBefore(
+                  htmlShareButton,
+                  cartDrawerBevyShareButtonPosition.children[0]
+                );
+              } else {
+                cartDrawerBevyShareButtonPosition.insertBefore(
+                  htmlShareButton,
+                  cartDrawerBevyShareButtonPosition.children[1]
+                );
+              }
+            }
+          }
+          //Inserting message
+          if (
+            shareCartData.attributes.customMessage &&
+            shareCartData.attributes.customMessage.length > 0 &&
+            shareCartCurrentStateData.customCartMessageStatus
+          ) {
+            const customMessageFieldValue = emojione.shortnameToImage(
+              shareCartData.attributes.customMessage
+            );
+            var marLeft = "0";
+            var marRight = "0";
+            if (document.getElementById("slidecarthq")) {
+              marLeft = "20";
+              marRight = "10";
+            }
+            const messageHtmlElement = createElementFromHTML(`
+                  <div class="custom_css_priority1 custom_css_priority2">
+                  <div class="div_share_cart_message custom_cart_msg"
+                            style="display: flex;
+                            padding: 5px 10px;
+                            margin: 10px 0px;
+                            margin-left: ${marLeft}px;
+                            margin-right: ${marRight}px;
+                            margin-top: 20px;
+                            background-color:${shareCartCurrentStateData.basicBackgroundColorMsg.value};
+                            border: ${shareCartCurrentStateData.borderWidthMsg}px solid ${shareCartCurrentStateData.basicBorderColorMsg.value};
+                            border-radius: ${shareCartCurrentStateData.borderRadiusMsg}px;
+                            justify-content: space-between;
+                            flex-grow: 1;
+                            align-items: center;
+                            font-size: ${shareCartCurrentStateData.customMsgFontSize}px;
+                              font-weight: ${shareCartCurrentStateData.customMsgWeight};
+                              color: ${shareCartCurrentStateData.basicTextColorMsg.value};
+                              font-family: share-cart-font, MyFont, myFont;">
+                      <p style="font-size: inherit;
+                              font-weight: inherit;
+                              color: inherit;
+                              font-family: inherit;
+                              margin: 0px;">
+                              ${customMessageFieldValue}
+                      </p>
+                      <div style="display: flex;
+                                  justify-content: center;
+                                  align-items: center;"
+                      >
+                        <span 
+                          style="  
+                            all: unset !important;
+                            cursor: pointer !important;
+                            line-height: 0.7 !important;
+                            top: 0 !important;
+                            position: relative !important;
+                            margin-left: 10px !important;"
+                          >
+                          <svg style="fill: ${shareCartCurrentStateData.basicIconColorMsg.value} !important; stroke: ${shareCartCurrentStateData.basicIconColorMsg.value} !important;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 512.001 512.001" strokewidth="1">
+                            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                  L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                  c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                  l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                  L284.286,256.002z"></path>
+                          </svg>
+                        </span>
+                      </div>
+                  </div>
+                  </div>
+                  `);
+            if (
+              shareCartCurrentStateData.shareMsgPosition &&
+              shareCartCurrentStateData.shareMsgPosition === "below"
+            ) {
+              cartDrawerBevyShareButtonPosition.appendChild(messageHtmlElement);
+            } else {
+              if (
+                cartDrawerBevyShareButtonPosition.parentNode.getElementsByClassName(
+                  "share_cart_wrap"
+                ).length > 0 &&
+                !shareCartCurrentStateData.socialSharePositionBottomStatus
+              ) {
+                cartDrawerBevyShareButtonPosition.parentNode
+                  .getElementsByClassName("share_cart_wrap")[0]
+                  .parentNode.parentNode.insertBefore(
+                    messageHtmlElement,
+                    cartDrawerBevyShareButtonPosition.parentNode.getElementsByClassName(
+                      "share_cart_wrap"
+                    )[0].parentNode
+                  );
+              } else {
+                if (
+                  cartDrawerBevyShareButtonPosition.children.length > 0 &&
+                  (cartDrawerBevyShareButtonPosition.offsetHeight > 0 ||
+                    cartDrawerBevyShareButtonPosition.parentNode.getElementsByClassName(
+                      "share_cart_wrap"
+                    ).length > 0)
+                ) {
+                  if (
+                    cartDrawerBevyShareButtonPosition.children.length === 2 ||
+                    (cartDrawerBevyShareButtonPosition.children.length === 3 &&
+                      cartDrawerBevyShareButtonPosition.parentNode.getElementsByClassName(
+                        "share_cart_wrap"
+                      ).length > 0) ||
+                    cartDrawerBevyShareButtonPosition.children[0].className.includes(
+                      "drawer__scrollable"
+                    )
+                  ) {
+                    cartDrawerBevyShareButtonPosition.insertBefore(
+                      messageHtmlElement,
+                      cartDrawerBevyShareButtonPosition.children[0]
+                    );
+                  } else
+                    cartDrawerBevyShareButtonPosition.insertBefore(
+                      messageHtmlElement,
+                      cartDrawerBevyShareButtonPosition.children[1]
+                    );
+                }
+              }
+            }
+            if (
+              cartDrawerBevyShareButtonPosition.parentNode.querySelector(
+                ".share_cart_message_close_btn"
+              )
+            )
+              cartDrawerBevyShareButtonPosition.parentNode
+                .querySelector(".share_cart_message_close_btn")
+                .addEventListener("click", function (event) {
+                  const customMessageElement = document.getElementsByClassName(
+                    "div_share_cart_message"
+                  );
+                  for (
+                    let customMessageElementNumber = 0;
+                    customMessageElementNumber < customMessageElement.length;
+                    customMessageElementNumber++
+                  ) {
+                    customMessageElement[
+                      customMessageElementNumber
+                    ].style.display = "none";
+                  }
+                  fetch(`/cart/update.js`, {
+                    method: "post",
+                    credentials: "same-origin",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      attributes: {
+                        BevySharedLink: true,
+                        customMessage: "",
+                      },
+                    }),
+                  });
+                });
+          }
+        } else {
+          addButtOnAroundForm(
+            cartDrawerBevyShareButtonPosition.parentNode.querySelectorAll(
+              'form[action="/cart"]'
+            )[0]
+          );
+        }
+      }
+    }
+
+    var htmlShareButton = createElementFromHTML(htmltoshow);
+    if (
+      miniCart &&
+      miniCart[0] &&
+      miniCart[0].parentNode.getElementsByClassName("share_cart_wrap").length <=
+        0
+    ) {
+      if (shareCartCurrentStateData.socialSharePositionBottomStatus === true) {
+        miniCart[0].parentNode.insertBefore(
+          htmlShareButton,
+          miniCart[0].nextSibling
+        );
+      } else {
+        miniCart[0].parentNode.insertBefore(htmlShareButton, miniCart[0]);
+      }
+      if (
+        shareCartData.attributes.customMessage &&
+        shareCartData.attributes.customMessage.length > 0 &&
+        shareCartCurrentStateData.customCartMessageStatus &&
+        miniCart[0].parentNode.getElementsByClassName("div_share_cart_message")
+          .length <= 0
+      ) {
+        const customMessageFieldValue = emojione.shortnameToImage(
+          shareCartData.attributes.customMessage
+        );
+        var marLeft = "0";
+        var marRight = "0";
+        const messageHtmlElement = createElementFromHTML(`
+                  <div class="custom_css_priority1 custom_css_priority2">
+                  <div class="div_share_cart_message custom_cart_msg"
+                            style="display: flex;
+                            padding: 5px 10px;
+                            margin: 10px 0px;
+                            margin-left: ${marLeft}px;
+                            margin-right: ${marRight}px;
+                            margin-top: 20px;
+                            background-color:${shareCartCurrentStateData.basicBackgroundColorMsg.value};
+                            border: ${shareCartCurrentStateData.borderWidthMsg}px solid ${shareCartCurrentStateData.basicBorderColorMsg.value};
+                            border-radius: ${shareCartCurrentStateData.borderRadiusMsg}px;
+                            justify-content: space-between;
+                            flex-grow: 1;
+                            align-items: center;
+                            font-size: ${shareCartCurrentStateData.customMsgFontSize}px;
+                              font-weight: ${shareCartCurrentStateData.customMsgWeight};
+                              color: ${shareCartCurrentStateData.basicTextColorMsg.value};
+                              font-family: share-cart-font, MyFont, myFont;">
+                      <p style="font-size: inherit;
+                              font-weight: inherit;
+                              color: inherit;
+                              font-family: inherit;
+                              margin: 0px;">
+                              ${customMessageFieldValue}
+                      </p>
+                      <div style="display: flex;
+                                  justify-content: center;
+                                  align-items: center;"
+                      >
+                        <span 
+                          style="  
+                            all: unset !important;
+                            cursor: pointer !important;
+                            line-height: 0.7 !important;
+                            top: 0 !important;
+                            position: relative !important;
+                            margin-left: 10px !important;"
+                          >
+                          <svg style="fill: ${shareCartCurrentStateData.basicIconColorMsg.value} !important; stroke: ${shareCartCurrentStateData.basicIconColorMsg.value} !important;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 512.001 512.001" strokewidth="1">
+                            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                  L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                  c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                  l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                  L284.286,256.002z"></path>
+                          </svg>
+                        </span>
+                      </div>
+                  </div>
+                  </div>
+                  `);
+
+        if (
+          miniCart[0].parentNode.getElementsByClassName("share_cart_wrap")
+            .length > 0 &&
+          shareCartCurrentStateData.socialSharePositionBottomStatus
+        ) {
+          if (
+            shareCartCurrentStateData.shareMsgPosition &&
+            shareCartCurrentStateData.shareMsgPosition === "below"
+          ) {
+            miniCart[0].parentNode.insertBefore(
+              messageHtmlElement,
+              miniCart[0].parentNode.getElementsByClassName(
+                "share_cart_wrap"
+              )[0].parentNode.nextSibling
+            );
+          } else {
+            miniCart[0].parentNode.insertBefore(
+              messageHtmlElement,
+              miniCart[0]
+            );
+          }
+        } else if (
+          miniCart[0].parentNode.getElementsByClassName("share_cart_wrap")
+            .length > 0 &&
+          !shareCartCurrentStateData.socialSharePositionBottomStatus
+        ) {
+          if (
+            shareCartCurrentStateData.shareMsgPosition &&
+            shareCartCurrentStateData.shareMsgPosition === "below"
+          ) {
+            miniCart[0].parentNode.insertBefore(
+              messageHtmlElement,
+              miniCart[0].nextSibling
+            );
+          } else {
+            miniCart[0].parentNode.insertBefore(
+              messageHtmlElement,
+              miniCart[0].parentNode.getElementsByClassName(
+                "share_cart_wrap"
+              )[0].parentNode
+            );
+          }
+        }
+
+        if (
+          miniCart[0].parentNode.querySelector(".share_cart_message_close_btn")
+        )
+          miniCart[0].parentNode
+            .querySelector(".share_cart_message_close_btn")
+            .addEventListener("click", function (event) {
+              const customMessageElement = document.getElementsByClassName(
+                "div_share_cart_message"
+              );
+              for (
+                let customMessageElementNumber = 0;
+                customMessageElementNumber < customMessageElement.length;
+                customMessageElementNumber++
+              ) {
+                customMessageElement[customMessageElementNumber].style.display =
+                  "none";
+              }
+              fetch(`/cart/update.js`, {
+                method: "post",
+                credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  attributes: {
+                    BevySharedLink: true,
+                    customMessage: "",
+                  },
+                }),
+              });
+            });
+      }
+    }
+
+    if (
+      lineItemTable &&
+      lineItemTable[0] &&
+      window.location.pathname === "/cart" &&
+      lineItemTable[0].parentNode.getElementsByClassName("share_cart_wrap")
+        .length <= 0
+    ) {
+      htmlShareButton.style.paddingLeft = "30px";
+      htmlShareButton.style.paddingRight = "30px";
+      if (shareCartCurrentStateData.socialSharePositionBottomStatus === true) {
+        lineItemTable[0].parentNode.insertBefore(
+          htmlShareButton,
+          lineItemTable[0].nextSibling
+        );
+      } else {
+        lineItemTable[0].parentNode.insertBefore(
+          htmlShareButton,
+          lineItemTable[0]
+        );
+      }
+      if (
+        shareCartData.attributes.customMessage &&
+        shareCartData.attributes.customMessage.length > 0 &&
+        shareCartCurrentStateData.customCartMessageStatus &&
+        lineItemTable[0].parentNode.getElementsByClassName(
+          "div_share_cart_message"
+        ).length <= 0
+      ) {
+        const customMessageFieldValue = emojione.shortnameToImage(
+          shareCartData.attributes.customMessage
+        );
+        var marLeft = "0";
+        var marRight = "0";
+        const messageHtmlElement = createElementFromHTML(`
+                  <div class="custom_css_priority1 custom_css_priority2">
+                  <div class="div_share_cart_message custom_cart_msg" 
+                            style="display: flex;
+                            padding: 5px 10px;
+                            margin: 10px 0px;
+                            margin-left: ${marLeft}px;
+                            margin-right: ${marRight}px;
+                            margin-top: 20px;
+                            background-color:${shareCartCurrentStateData.basicBackgroundColorMsg.value};
+                            border: ${shareCartCurrentStateData.borderWidthMsg}px solid ${shareCartCurrentStateData.basicBorderColorMsg.value};
+                            border-radius: ${shareCartCurrentStateData.borderRadiusMsg}px;
+                            justify-content: space-between;
+                            flex-grow: 1;
+                            align-items: center;
+                            font-size: ${shareCartCurrentStateData.customMsgFontSize}px;
+                              font-weight: ${shareCartCurrentStateData.customMsgWeight};
+                              color: ${shareCartCurrentStateData.basicTextColorMsg.value};
+                              font-family: share-cart-font, MyFont, myFont;">
+                      <p style="font-size: inherit;
+                              font-weight: inherit;
+                              color: inherit;
+                              font-family: inherit;
+                              margin: 0px;">
+                              ${customMessageFieldValue}
+                      </p>
+                      <div style="display: flex;
+                                  justify-content: center;
+                                  align-items: center;"
+                      >
+                        <span 
+                          style="  
+                            all: unset !important;
+                            cursor: pointer !important;
+                            line-height: 0.7 !important;
+                            top: 0 !important;
+                            position: relative !important;
+                            margin-left: 10px !important;"
+                          >
+                          <svg style="fill: ${shareCartCurrentStateData.basicIconColorMsg.value} !important; stroke: ${shareCartCurrentStateData.basicIconColorMsg.value} !important;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 512.001 512.001" strokewidth="1">
+                            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                  L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                  c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                  l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                  L284.286,256.002z"></path>
+                          </svg>
+                        </span>
+                      </div>
+                  </div>
+                  </div>
+                  `);
+        messageHtmlElement.style.paddingLeft = "30px";
+        messageHtmlElement.style.paddingRight = "30px";
+
+        if (
+          lineItemTable[0].parentNode.getElementsByClassName("share_cart_wrap")
+            .length > 0 &&
+          shareCartCurrentStateData.socialSharePositionBottomStatus
+        ) {
+          if (
+            shareCartCurrentStateData.shareMsgPosition &&
+            shareCartCurrentStateData.shareMsgPosition === "below"
+          ) {
+            lineItemTable[0].parentNode.insertBefore(
+              messageHtmlElement,
+              lineItemTable[0].parentNode.getElementsByClassName(
+                "share_cart_wrap"
+              )[0].parentNode.nextSibling
+            );
+          } else {
+            lineItemTable[0].parentNode.insertBefore(
+              messageHtmlElement,
+              lineItemTable[0]
+            );
+          }
+        } else if (
+          lineItemTable[0].parentNode.getElementsByClassName("share_cart_wrap")
+            .length > 0 &&
+          !shareCartCurrentStateData.socialSharePositionBottomStatus
+        ) {
+          if (
+            shareCartCurrentStateData.shareMsgPosition &&
+            shareCartCurrentStateData.shareMsgPosition === "below"
+          ) {
+            lineItemTable[0].parentNode.insertBefore(
+              messageHtmlElement,
+              lineItemTable[0].nextSibling
+            );
+          } else {
+            lineItemTable[0].parentNode.insertBefore(
+              messageHtmlElement,
+              lineItemTable[0].parentNode.getElementsByClassName(
+                "share_cart_wrap"
+              )[0].parentNode
+            );
+          }
+        }
+
+        if (
+          lineItemTable[0].parentNode.querySelector(
+            ".share_cart_message_close_btn"
+          )
+        )
+          lineItemTable[0].parentNode
+            .querySelector(".share_cart_message_close_btn")
+            .addEventListener("click", function (event) {
+              const customMessageElement = document.getElementsByClassName(
+                "div_share_cart_message"
+              );
+              for (
+                let customMessageElementNumber = 0;
+                customMessageElementNumber < customMessageElement.length;
+                customMessageElementNumber++
+              ) {
+                customMessageElement[customMessageElementNumber].style.display =
+                  "none";
+              }
+              fetch(`/cart/update.js`, {
+                method: "post",
+                credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  attributes: {
+                    BevySharedLink: true,
+                    customMessage: "",
+                  },
+                }),
+              });
+            });
+      }
+    }
+
+    var node = document.querySelectorAll('form[action="/cart"]');
+    var buttonFormElement = [];
+    for (let i = 0; i < node.length; i++) {
+      if (node[i].offsetHeight > 0) {
+        const replacedTextContent = node[i].textContent
+          .toLowerCase()
+          .replace(/[^A-Z]/gi, "");
+        if (
+          (node[i].querySelectorAll(`a[href="${cartProductsHref[0]}"]`).length >
+            0 ||
+            replacedTextContent.includes("cart") ||
+            replacedTextContent.includes("total")) &&
+          node[i].id !== "mini-cart"
+        ) {
+          node = node[i];
+          buttonFormElement.push(node);
+          break;
+        }
+      }
+    }
+
+    for (var bFrmElNum = 0; bFrmElNum < buttonFormElement.length; bFrmElNum++) {
+      node = buttonFormElement[bFrmElNum];
+      if (
+        shareCartCurrentStateData.socialSharePositionBottomStatus === true &&
+        node.parentNode &&
+        node.parentNode.getElementsByClassName("share_cart_wrap").length <= 0
+      ) {
+        node.parentNode.appendChild(htmlShareButton);
+      } else if (
+        shareCartCurrentStateData.socialSharePositionBottomStatus === false &&
+        node.parentNode &&
+        node.parentNode.getElementsByClassName("share_cart_wrap").length <= 0
+      ) {
+        node.parentNode.insertBefore(htmlShareButton, node);
+      }
+      //Inserting message
+      if (
+        shareCartData.attributes.customMessage &&
+        shareCartData.attributes.customMessage.length > 0 &&
+        shareCartCurrentStateData.customCartMessageStatus &&
+        node.parentNode.getElementsByClassName("div_share_cart_message")
+          .length <= 0
+      ) {
+        const customMessageFieldValue = emojione.shortnameToImage(
+          shareCartData.attributes.customMessage
+        );
+        var marLeft = "0";
+        var marRight = "0";
+        if (document.getElementById("slidecarthq")) {
+          marLeft = "20";
+          marRight = "10";
+        }
+        const messageHtmlElement = createElementFromHTML(`
+                  <div class="custom_css_priority1 custom_css_priority2">
+                  <div class="div_share_cart_message custom_cart_msg"
+                            style="display: flex;
+                            padding: 5px 10px;
+                            margin: 10px 0px;
+                            margin-left: ${marLeft}px;
+                            margin-right: ${marRight}px;
+                            margin-top: 20px;
+                            background-color:${shareCartCurrentStateData.basicBackgroundColorMsg.value};
+                            border: ${shareCartCurrentStateData.borderWidthMsg}px solid ${shareCartCurrentStateData.basicBorderColorMsg.value};
+                            border-radius: ${shareCartCurrentStateData.borderRadiusMsg}px;
+                            justify-content: space-between;
+                            flex-grow: 1;
+                            align-items: center;
+                            font-size: ${shareCartCurrentStateData.customMsgFontSize}px;
+                              font-weight: ${shareCartCurrentStateData.customMsgWeight};
+                              color: ${shareCartCurrentStateData.basicTextColorMsg.value};
+                              font-family: share-cart-font, MyFont, myFont;">
+                      <p style="font-size: inherit;
+                              font-weight: inherit;
+                              color: inherit;
+                              font-family: inherit;
+                              margin: 0px;">
+                              ${customMessageFieldValue}
+                      </p>
+                      <div style="display: flex;
+                                  justify-content: center;
+                                  align-items: center;"
+                      >
+                        <span 
+                          style="  
+                            all: unset !important;
+                            cursor: pointer !important;
+                            line-height: 0.7 !important;
+                            top: 0 !important;
+                            position: relative !important;
+                            margin-left: 10px !important;"
+                          >
+                          <svg style="fill: ${shareCartCurrentStateData.basicIconColorMsg.value} !important; stroke: ${shareCartCurrentStateData.basicIconColorMsg.value} !important;" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 512.001 512.001" strokewidth="1">
+                            <path d="M284.286,256.002L506.143,34.144c7.811-7.811,7.811-20.475,0-28.285c-7.811-7.81-20.475-7.811-28.285,0L256,227.717
+                                  L34.143,5.859c-7.811-7.811-20.475-7.811-28.285,0c-7.81,7.811-7.811,20.475,0,28.285l221.857,221.857L5.858,477.859
+                                  c-7.811,7.811-7.811,20.475,0,28.285c3.905,3.905,9.024,5.857,14.143,5.857c5.119,0,10.237-1.952,14.143-5.857L256,284.287
+                                  l221.857,221.857c3.905,3.905,9.024,5.857,14.143,5.857s10.237-1.952,14.143-5.857c7.811-7.811,7.811-20.475,0-28.285
+                                  L284.286,256.002z"></path>
+                          </svg>
+                        </span>
+                      </div>
+                  </div>
+                  </div>
+                  `);
+        if (
+          shareCartCurrentStateData.shareMsgPosition &&
+          shareCartCurrentStateData.shareMsgPosition === "below"
+        ) {
+          node.parentNode.appendChild(messageHtmlElement);
+        } else {
+          if (
+            node.parentNode.getElementsByClassName("share_cart_wrap").length >
+              0 &&
+            !shareCartCurrentStateData.socialSharePositionBottomStatus
+          ) {
+            node.parentNode
+              .getElementsByClassName("share_cart_wrap")[0]
+              .parentNode.parentNode.insertBefore(
+                messageHtmlElement,
+                node.parentNode.getElementsByClassName("share_cart_wrap")[0]
+                  .parentNode
+              );
+          } else {
+            node.parentNode.insertBefore(messageHtmlElement, node);
+          }
+        }
+        if (node.parentNode.querySelector(".share_cart_message_close_btn"))
+          node.parentNode
+            .querySelector(".share_cart_message_close_btn")
+            .addEventListener("click", function (event) {
+              const customMessageElement = document.getElementsByClassName(
+                "div_share_cart_message"
+              );
+              for (
+                let customMessageElementNumber = 0;
+                customMessageElementNumber < customMessageElement.length;
+                customMessageElementNumber++
+              ) {
+                customMessageElement[customMessageElementNumber].style.display =
+                  "none";
+              }
+              fetch(`/cart/update.js`, {
+                method: "post",
+                credentials: "same-origin",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  attributes: {
+                    BevySharedLink: true,
+                    customMessage: "",
+                  },
+                }),
+              });
+            });
+      }
+    }
+
+    let shareCartBtn = document.querySelectorAll(".share_cart_btn");
+    let shareCartModal = document.getElementById("sharecartmodal");
+    for (var i = 0; i < shareCartBtn.length; i++) {
+      shareCartBtn[i].addEventListener("click", function (event) {
+        if (event && event.stopPropagation) event.stopPropagation();
+        shareCartModal.style.display = "flex";
+        var textInput = document.getElementsByClassName(
+          "share_cart_modal_middle"
+        );
+
+        if (
+          textInput &&
+          textInput.length > 0 &&
+          textInput[0].getElementsByClassName("social_link").length <= 0
+        ) {
+          var element = textInput[0];
+          var children = element.children;
+          var parentWidth = element.offsetWidth;
+          var totalChildWidth = 0;
+          for (var i = 0; i < children.length; i++) {
+            totalChildWidth = children[i].offsetWidth + totalChildWidth;
+          }
+          if (parentWidth - totalChildWidth <= 20) {
+            element.style.flexDirection = "column";
+            for (var i = 0; i < children.length; i++) {
+              children[i].style.marginRight = "0px";
+              if (i < children.length - 1)
+                children[i].style.marginBottom = "20px";
+            }
+          } else {
+            element.style.removeProperty("flex-direction");
+            for (var i = 0; i < children.length; i++) {
+              children[i].style.removeProperty("margin-right");
+              children[i].style.removeProperty("margin-bottom");
+            }
+          }
+        }
+      });
+      const shareBtnParentNode =
+        shareCartBtn[i].parentNode.parentNode.parentNode.parentNode;
+      const shareBtnParentNodeChildren = shareBtnParentNode.children;
+      var childTotalWidth = 0;
+      for (
+        var sBtnPNIndx = 0;
+        sBtnPNIndx < shareBtnParentNodeChildren.length;
+        sBtnPNIndx++
+      ) {
+        childTotalWidth += shareBtnParentNodeChildren[sBtnPNIndx].offsetHeight;
+      }
+      if (shareBtnParentNode.offsetHeight < childTotalWidth) {
+        shareBtnParentNode.style.overflowY = "scroll";
+      }
+    }
+
+    var el = document.getElementsByClassName("id_h2_shoppingcart");
+    for (var i = 0; i < el.length; i++) el[i].innerHTML = shoppingcart;
+    var element_svg = document.getElementsByClassName("id_span_svgicon");
+    for (var i = 0; i < element_svg.length; i++)
+      element_svg[i].innerHTML = icontoshow;
+    var el_buttontext = document.getElementsByClassName("id_span_buttontext");
+    for (var i = 0; i < el_buttontext.length; i++)
+      el_buttontext[i].innerHTML = buttontext;
+  } else {
+    setTimeout(() => {
+      injectBevyCartDrawerButton();
+    }, 2000);
+  }
+}

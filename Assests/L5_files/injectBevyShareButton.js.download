@@ -1,0 +1,143 @@
+//Function for inject share button
+async function injectBevyShareButton(cartData) {
+    const shareButtonEmbedBlock =
+      document.getElementsByClassName("bevy_share_button");
+    if (
+      (window.location.pathname === "/cart" ||
+        shareButtonEmbedBlock.length > 0) &&
+      cartData.item_count > 0 &&
+      shareCartCurrentStateData.checked &&
+      shareCartCurrentStateData.checked === true &&
+      (!shareCartCurrentStateData.loggedInUserEnabledOnly ||
+        shareCartCurrentStateData.loggedInUserEnabledOnly === false ||
+        (shareCartCurrentStateData.loggedInUserEnabledOnly === true &&
+          isCustomerLoggedInBevy &&
+          tagMatched))
+    ) {
+      shareCartData = cartData;
+      var htmlElement = createElementFromHTML(htmltoshow);
+      var node = document.querySelectorAll('form[action="/cart"]');
+      for (let i = 0; i < node.length; i++) {
+        if (
+          node[i].firstChild &&
+          node[i].firstChild.className &&
+          node[i].firstChild.className.includes("icart-pg-container") === true
+        ) {
+          iCartApp = true;
+          htmlElement = createElementFromHTML(htmltoshow);
+        }
+        if (node[i].offsetHeight > 0) {
+          const replacedTextContent = node[i].textContent
+            .toLowerCase()
+            .replace(/[^A-Z]/gi, "");
+          if (
+            node[i].querySelectorAll(`a[href="${cartProductsHref[0]}"]`).length >
+              0 ||
+            replacedTextContent.includes("cart") ||
+            replacedTextContent.includes("total")
+          ) {
+            node = node[i];
+            break;
+          }
+        }
+      }
+      var iter = 0;
+      while (!node.offsetHeight && iter < 20) {
+        iter += 1;
+        await timeout(500);
+        node = document.querySelectorAll('form[action="/cart"]');
+        for (let i = 0; i < node.length; i++) {
+          if (
+            node[i].firstChild &&
+            node[i].firstChild.className &&
+            node[i].firstChild.className.includes("icart-pg-container") === true
+          ) {
+            iCartApp = true;
+            htmlElement = createElementFromHTML(htmltoshow);
+          }
+          if (node[i].offsetHeight > 0) {
+            const replacedTextContent = node[i].textContent
+              .toLowerCase()
+              .replace(/[^A-Z]/gi, "");
+            if (
+              node[i].querySelectorAll(`a[href="${cartProductsHref[0]}"]`)
+                .length > 0 ||
+              replacedTextContent.includes("cart") ||
+              replacedTextContent.includes("total")
+            ) {
+              node = node[i];
+              break;
+            }
+          }
+        }
+      }
+  
+      if (
+        shareCartCurrentStateData.socialSharePositionBottomStatus === true &&
+        window.location.pathname === "/cart" &&
+        node.parentNode &&
+        shareButtonEmbedBlock.length <= 0
+      ) {
+        node.parentNode.appendChild(htmlElement);
+      } else if (
+        shareCartCurrentStateData.socialSharePositionBottomStatus === false &&
+        window.location.pathname === "/cart" &&
+        node.parentNode &&
+        shareButtonEmbedBlock.length <= 0
+      ) {
+        node.parentNode.insertBefore(htmlElement, node);
+      }
+  
+      if (shareButtonEmbedBlock.length > 0) {
+        for (var i = 0; i < shareButtonEmbedBlock.length; i++) {
+          var htmlShareButton = createElementFromHTML(htmltoshow);
+          shareButtonEmbedBlock[i].appendChild(htmlShareButton);
+        }
+      }
+    }
+  
+    // let shareCartBtn = document.querySelectorAll(".share_cart_btn");
+    // let shareCartModal = document.getElementById("sharecartmodal");
+    // for (var i = 0; i < shareCartBtn.length; i++) {
+    //   shareCartBtn[i].addEventListener("click", function (event) {
+    //     if (event && event.stopPropagation) event.stopPropagation();
+    //     shareCartModal.style.display = "flex";
+    //     var textInput = document.getElementsByClassName(
+    //       "share_cart_modal_middle"
+    //     );
+  
+    //     if (textInput && textInput.length > 0) {
+    //       var element = textInput[0];
+    //       var children = element.children;
+    //       var parentWidth = element.offsetWidth;
+    //       var totalChildWidth = 0;
+    //       for (var i = 0; i < children.length; i++) {
+    //         totalChildWidth = children[i].offsetWidth + totalChildWidth;
+    //       }
+    //       if (parentWidth - totalChildWidth <= 20) {
+    //         element.style.flexDirection = "column";
+    //         for (var i = 0; i < children.length; i++) {
+    //           children[i].style.marginRight = "0px";
+    //           if (i < children.length - 1)
+    //             children[i].style.marginBottom = "20px";
+    //         }
+    //       } else {
+    //         element.style.removeProperty("flex-direction");
+    //         for (var i = 0; i < children.length; i++) {
+    //           children[i].style.removeProperty("margin-right");
+    //           children[i].style.removeProperty("margin-bottom");
+    //         }
+    //       }
+    //     }
+    //   });
+    // }
+  
+    // var el = document.getElementsByClassName("id_h2_shoppingcart");
+    // for (var i = 0; i < el.length; i++) el[i].innerHTML = shoppingcart;
+    // var element_svg = document.getElementsByClassName("id_span_svgicon");
+    // for (var i = 0; i < element_svg.length; i++)
+    //   element_svg[i].innerHTML = icontoshow;
+    // var el_buttontext = document.getElementsByClassName("id_span_buttontext");
+    // for (var i = 0; i < el_buttontext.length; i++)
+    //   el_buttontext[i].innerHTML = buttontext;
+}

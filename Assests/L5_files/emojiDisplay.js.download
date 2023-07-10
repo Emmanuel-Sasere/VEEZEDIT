@@ -1,0 +1,9 @@
+//emoji-picker setup function
+//scripts already added in head
+function emojiDisplay() {
+    $("#customized_msg_input").emojioneArea({
+      autocomplete: false,
+      inline: true,
+      saveEmojisAs: "shortname",
+    });
+}

@@ -1,0 +1,12 @@
+function copyClipboard() {
+    var copiedMsg = document.getElementById("copied_clipboard");
+    var copyText = document.getElementById("show_cart_permalink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    copiedMsg.style.display = "flex";
+    setTimeout(function () {
+      copiedMsg.style.display = "none";
+    }, 3000);
+    call_setcart();
+}

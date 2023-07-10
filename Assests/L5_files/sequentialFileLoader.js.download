@@ -1,0 +1,31 @@
+//Function for load script synchronously
+var sequentialFileLoader = (() => {
+    var fileLength = 0;
+    var scriptListToImport = [];
+  
+    function loadScriptAndExecuteCallback(i = 0) {
+      if (i === fileLength) {
+        setupThemesValue();
+        listenToCartChange(window, window.fetch);
+        bevyShareCartAddInPage();
+        return;
+      }
+      let myScript = document.createElement("script");
+      myScript.setAttribute("src", scriptListToImport[i]);
+      myScript.async = false;
+      document.body.appendChild(myScript);
+      if (i < fileLength) {
+        myScript.onload = loadScriptAndExecuteCallback(i + 1);
+      }
+    }
+  
+    function loadScript(scriptList) {
+      scriptListToImport = scriptList;
+      fileLength = scriptList.length;
+      loadScriptAndExecuteCallback(0);
+    }
+  
+    return {
+      loadScript,
+    };
+})();

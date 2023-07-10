@@ -1,0 +1,8 @@
+function hideCustomMessageField() {
+    var customizedMsgDiv = document.getElementById("customized_msg_div");
+    var customizedMsgNote = document.getElementById("id_span_notetext");
+    //hide emoji picker
+    customizedMsgNote.style.display = "block";
+    customizedMsgDiv.style.display = "none";
+    toggleContentShareMsg = shareCartCurrentStateData.customCartMessageStatus;
+}
