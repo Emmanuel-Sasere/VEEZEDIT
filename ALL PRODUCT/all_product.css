@@ -294,7 +294,7 @@ h5 {
 
 /* ===== MEDIA QUERY ====== */
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .content_container {
     position: relative;
     display: block;
@@ -400,7 +400,7 @@ h5 {
   .product_items,
   .popular_item {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
     gap: 1rem;
   }
 }
