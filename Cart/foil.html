@@ -9,7 +9,7 @@
 
     <!-- ===CSS LINKING === -->
     <link rel="stylesheet" href="foil.css" />
-    <link rel="stylesheet" href="../style.css" />
+    <!-- <link rel="stylesheet" href="../style.css" /> -->
     <!-- === BOXICON CDN ==== -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -73,10 +73,29 @@
             <a href="../ACCOUNT/account.html"
               ><i class="bx user_icony bx-user bx-sm"></i
             ></a>
+                <div class="boxx"> 
+                  <span class="my-cart-badge">0</span>
+                  <i class="bx bx-shopping-bag bx-sm" name="cart"  id="cart-icon"></i>
+                </div>
+                <!--===== THIS IS CART ========= -->
+                <div class="cart">
+                  <div class="cart-title">Cart Items</div>
+                  <div class="cart-content">
+        
+                  </div>
+                  
+                <div class="total">
+                  <div class="total-title">Total</div>
+                  <div class="total-price">₦0</div>
+                </div>
+          
+                <button class="btn-buy">Place Order</button>
+                <i class='bx bx-x'  name="close" id="cart-close" ></i>
+          
+                </div>
 
-            <i class="bx bx-shopping-bag bx-sm my-cart-icon">
-              <span class="my-cart-badge">0</span>
-            </i>
+                <!-- ===== CART ENDS HERE ======= -->
+           
           </div>
         </div>
         <!-- NAV BODY ENDS HERE -->
@@ -86,10 +105,10 @@
     <section>
       <div class="cart_body containerx" data-id="foil">
         <div class="left">
-          <img src="../Assests/H1.webp" alt="" />
+          <img src="../Assests/H1.webp"  class="product_img" id="product-img"  />
         </div>
         <div class="right">
-          <h6>VEZCOMPRINTS</h6>
+          <h6>VEEZEDIT</h6>
           <h2 class="product_name">Foil Business Cards</h2>
           <p>
             The matte finish has a smooth but skighly dull surface to fit.
@@ -225,19 +244,9 @@
               </div>
             </div>
           </form>
-          <button
-            class="add_cart my-cart-btn"
-            data-id="1"
-            data-name="Foil Business Cards"
-            data-summary="summary 1"
-            data-price="37,700"
-            data-quantity="1"
-            data-image="../Assests/H1.webp"
-          >
-            Add to Cart
-          </button>
+          <button type="button"  name="cart"  class="add_cart"> Add to Cart</button>
 
-          <strong>₦37,700.00</strong>
+          <strong class="product_price">₦37,700.00</strong>
           <a href="#">Shipping</a>
           <p>calculated at checkout</p>
 
@@ -256,11 +265,9 @@
       </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/mycart@2.0.0/dist/mycart.min.js"></script>
-      <!-- Include jQuery CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Include mycart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/mycart@2.0.0/dist/mycart.min.js"></script>
+  
+ 
+
 </head>
     <script src="cart.js"></script>
     <script src="../script.js"></script>

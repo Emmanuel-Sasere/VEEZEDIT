@@ -94,6 +94,10 @@ nav {
   padding: 5px;
 }
 
+.nav_menu a:hover {
+  color: turquoise;
+}
+
 .nav_link {
   font-family: var(--font_family);
   font-size: var(--nav-font-size);
@@ -113,6 +117,10 @@ nav {
   color: var(--text_color);
   margin-left: 10px;
   cursor: pointer;
+}
+
+.bx:hover {
+  color: turquoise;
 }
 
 /* === COMPANY IMAGE ======== */
@@ -197,6 +205,10 @@ h5 {
 .footer_top a {
   margin-top: 5px;
   color: var(--text_color);
+}
+
+.footer_top a:hover {
+  color: turquoise;
 }
 
 .footer_bottom {
