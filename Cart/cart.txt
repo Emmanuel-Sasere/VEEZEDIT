@@ -1,0 +1,1009 @@
+
+  HTML ==================
+
+<!-- HTML PRODUCT PAGE -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foil card</title>
+
+    <!-- ===CSS LINKING === -->
+    <link rel="stylesheet" href="foil.css" />
+    <!-- <link rel="stylesheet" href="../style.css" /> -->
+    <!-- === BOXICON CDN ==== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ======= FONT LINK ==== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="body">
+    <div>
+      <nav class="hide">
+        <div class="nav_body containerx">
+          <!-- ==== TOGGLE MENU === -->
+          <div class="toggle_menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+
+          <!-- ==== LOGO ==== -->
+          <div class="logo">
+            <a href="../index.html"
+              ><img src="../Assests/VE Logo Original.png" alt=""
+            /></a>
+          </div>
+
+          <!-- ===== MENU NAVIGATION ========= -->
+          <ul class="nav_menu">
+            <li class="nav_list">
+              <a href="../index.html" class="nav_link">HOME</a>
+            </li>
+
+            <li class="nav_list">
+              <a href="../ALL PRODUCT/all_product.html" class="nav_link">ALL PRODUCTS</a>
+            </li>
+
+           
+            <li class="nav_list">
+              <a href="../ACCOUNT/home.html" class="nav_link">DASHBOARD</a>
+            </li>
+
+          
+
+            
+
+            <li class="nav_list">
+              <a href="#" class="nav_link">ABOUT</a>
+            </li>
+          </ul>
+
+          <!--  ===== NAVIGATION ICON ====== -->
+
+          <div class="nav_icon">
+            <i class="bx bx-search-alt-2 bx-sm"></i>
+            <a href="../ACCOUNT/account.html"
+              ><i class="bx user_icony bx-user bx-sm"></i
+            ></a>
+                <div class="boxx"> 
+                  <span class="my-cart-badge">0</span>
+                  <i class="bx bx-shopping-bag bx-sm" name="cart"  id="cart-icon"></i>
+                </div>
+                <!--===== THIS IS CART ========= -->
+                <div class="cart">
+                  <div class="cart-title">Cart Items</div>
+                  <div class="cart-content">
+        
+                  </div>
+                  
+                <div class="total">
+                  <div class="total-title">Total</div>
+                  <div class="total-price">₦0</div>
+                </div>
+          
+                <button class="btn-buy">Place Order</button>
+                <i class='bx bx-x'  name="close" id="cart-close" ></i>
+          
+                </div>
+
+                <!-- ===== CART ENDS HERE ======= -->
+           
+          </div>
+        </div>
+        <!-- NAV BODY ENDS HERE -->
+      </nav>
+    </div>
+
+    <section>
+      <div class="cart_body containerx" data-id="foil">
+        <div class="left">
+          <img src="C:\Users\User\Desktop\Portfolio Projects\VEEZEDIT\Assests\H1.webp"  class="product_img" id="product-img"  />
+        </div>
+        <div class="right">
+          <h6>VEEZEDIT</h6>
+          <h2 class="product_name">Foil Business Cards</h2>
+          <p>
+            The matte finish has a smooth but skighly dull surface to fit.
+            providing an anti-glare effect that makes it easier to read
+          </p>
+
+          <form class="form_cont">
+            <h4>Choose your mode</h4>
+            <div class="box_cont">
+              <div class="box" onclick="basic()">Basic</div>
+              <div class="box" onclick="standard()">Standard</div>
+              <div class="box" onclick="Premium()">Premium</div>
+            </div>
+
+            <hr />
+
+            <div class="box_all_cont">
+              <div class="box_basic">
+                <div class="basic_cont">
+                  <h5 class="h5">Quick & Cost Effective</h5>
+                  <p class="p">(2-4) Days Turnaround</p>
+
+                  <ul>
+                    <li>4 fun Shapes & Sizes</li>
+                    <li>16 pt Smooth/ Dull Matte</li>
+                    <li>Add Round Corners & Spot UV</li>
+                    <li>Full Color + Double-Sided</li>
+                  </ul>
+                  <hr />
+                  <label for="size">Size</label>
+                  <select name="size" id="size">
+                    <option value="2x3.5">2 x 3.5 in</option>
+                    <option value="2.5x2.5">2.5 x 2.5 in</option>
+                    <option value="1.5x3.5">1.5 x 3.5 in</option>
+                    <option value="2x2">2 x 2 in</option>
+                  </select>
+                  <hr />
+
+                  <label for="paper">Paper</label>
+                  <select name="paper" id="paper">
+                    <option value="16pt">16 pt Matte</option>
+                    <option value="17pt">17 pt Matte</option>
+                  </select>
+
+                  <hr />
+
+                  <label for="quantity">Quantity</label>
+                  <select name="quantity" id="quantity">
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500 (+15,400)</option>
+                    <option value="1000">1000 (+30,800)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="box_standard">
+                <div class="standard_cont">
+                  <h5 class="h5">Quick & Cost Effective</h5>
+                  <p class="p">(2-4) Days Turnaround</p>
+
+                  <ul>
+                    <li>4 fun Shapes & Sizes</li>
+                    <li>16 pt Smooth/ Dull Matte</li>
+                    <li>Add Round Corners & Spot UV</li>
+                    <li>Full Color + Double-Sided</li>
+                  </ul>
+                  <hr />
+                  <label for="size">Size</label>
+                  <select name="size" id="size">
+                    <option value="2x3.5">2 x 3.5 in</option>
+                    <option value="2.5x2.5">2.5 x 2.5 in</option>
+                    <option value="1.5x3.5">1.5 x 3.5 in</option>
+                    <option value="2x2">2 x 2 in</option>
+                  </select>
+                  <hr />
+
+                  <label for="paper">Paper</label>
+                  <select name="paper" id="paper">
+                    <option value="16pt">16 pt Matte</option>
+                    <option value="17pt">17 pt Matte</option>
+                  </select>
+
+                  <hr />
+
+                  <label for="quantity">Quantity</label>
+                  <select name="quantity" id="quantity">
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500 (+15,400)</option>
+                    <option value="1000">1000 (+30,800)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="box_premium">
+                <div class="premium_cont">
+                  <h5 class="h5">Quick & Cost Effective</h5>
+                  <p class="p">(2-4) Days Turnaround</p>
+
+                  <ul>
+                    <li>4 fun Shapes & Sizes</li>
+                    <li>16 pt Smooth/ Dull Matte</li>
+                    <li>Add Round Corners & Spot UV</li>
+                    <li>Full Color + Double-Sided</li>
+                  </ul>
+                  <hr />
+                  <label for="size">Size</label>
+                  <select name="size" id="size">
+                    <option value="2x3.5">2 x 3.5 in</option>
+                    <option value="2.5x2.5">2.5 x 2.5 in</option>
+                    <option value="1.5x3.5">1.5 x 3.5 in</option>
+                    <option value="2x2">2 x 2 in</option>
+                  </select>
+                  <hr />
+
+                  <label for="paper">Paper</label>
+                  <select name="paper" id="paper">
+                    <option value="16pt">16 pt Matte</option>
+                    <option value="17pt">17 pt Matte</option>
+                  </select>
+
+                  <hr />
+
+                  <label for="quantity">Quantity</label>
+                  <select name="quantity" id="quantity">
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500 (+15,400)</option>
+                    <option value="1000">1000 (+30,800)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+          <button type="button"  name="cart"  class="add_cart"> Add to Cart</button>
+
+          <strong class="product_price">₦37,700.00</strong>
+          <a href="#">Shipping</a>
+          <p>calculated at checkout</p>
+
+          <h5><i class="bx bx-heart bx-sm"></i>100% Quality Guaranteed</h5>
+          <details>
+            <p>
+              We strive to produce high-quality products that not only meet, but
+              exceed, our customers' expectations, but we understand that there
+              may be times when you are not satisfied with your order. If you
+              are not satisfied with your custom product, please contact us
+              within 14 days of receiving your order and easily request a
+              reprint or refund.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  
+ 
+
+</head>
+    <script src="cart.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>
+
+
+
+
+ CSS =====================
+   /* CSS PRODUCT AND CART PAGE */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: rgb(189, 181, 181);
+  font-family: "Lato", sans-serif;
+}
+
+.containerx {
+  max-width: 90rem;
+  padding: 0 10rem;
+  margin: auto;
+}
+
+body {
+  scroll-behavior: smooth;
+  height: 100vh;
+}
+
+/* =========== NAV ======== */
+
+nav {
+  background-color: var(--nav_bg);
+  height: 6.5%;
+  border-bottom: 1px solid rgb(53, 51, 51);
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.nav_body {
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* 
+#cart-icon {
+  position: relative;
+} */
+
+.toggle_menu {
+  display: none;
+}
+
+.bar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: var(--text_color);
+}
+
+.logo img {
+  width: 30px;
+}
+
+.nav_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  list-style: none;
+}
+.nav_menu a {
+  color: turquoise;
+}
+
+.nav_link {
+  font-family: var(--font_family);
+  font-size: var(--nav-font-size);
+  font-weight: 400;
+  color: var(--text_color);
+  margin-left: 10px;
+}
+
+.nav_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.bx {
+  color: var(--text_color);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.bx:hover {
+  color: turquoise;
+}
+
+section {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(39, 38, 38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === CART ====== */
+
+.boxx {
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.my-cart-badge {
+  position: absolute;
+  background-color: #2f3542;
+  top: -5px;
+  right: 0;
+  padding: 3px;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  z-index: 99;
+}
+
+#cart-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(40, 37, 37, 0.1);
+  z-index: 100;
+}
+
+.cart-active {
+  right: 0;
+  transition: 0.5s;
+}
+
+.cart-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.total-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.total-price {
+  margin-left: 0.5rem;
+}
+
+.btn-buy {
+  padding: 12px 20px;
+  background-color: #2f3542;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.cart-box {
+  display: grid;
+  grid-template-columns: 32% 50% 18%;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+}
+
+.cart-img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+.detail-box {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.price-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-food-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #ff6348;
+  font-weight: 500;
+}
+
+.cart-price {
+  font-weight: 500;
+}
+
+.cart-quantity {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  width: 2.4rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.cart-remove {
+  font-size: 24px;
+  color: red;
+  cursor: pointer;
+}
+
+#cart-close {
+  position: absolute;
+  top: 1rem;
+  right: 0.8rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.cart_body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.left {
+  width: 58%;
+  height: 100%;
+}
+
+.left img {
+  width: 100%;
+  margin-top: 135px;
+}
+
+.right {
+  width: 40%;
+  padding: 20px;
+  max-height: 100%;
+}
+
+.form_cont {
+  background: rgb(25, 25, 25);
+  padding: 5px;
+}
+
+.box_cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  border: 1px solid rgb(192, 186, 186);
+  padding: 7px 15px;
+  background: transparent;
+  margin: 6px;
+  border-radius: 3px;
+}
+
+.box:hover {
+  background: turquoise;
+  transition: all 2sec ease-in;
+  color: rgb(34, 33, 33);
+}
+
+.box_premium,
+.box_standard {
+  display: none;
+}
+
+hr {
+  border: 1px solid rgb(156, 151, 151);
+  margin: 3px 0;
+}
+
+.h5 {
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 10px;
+}
+
+h6 {
+  margin-bottom: 5px;
+}
+h2 {
+  margin-bottom: 5px;
+}
+p {
+  margin-bottom: 20px;
+}
+
+ul li {
+  margin: 5px;
+}
+
+.select {
+  background-color: black;
+  padding: 10px;
+}
+
+.add_cart {
+  padding: 10px;
+  width: 200px;
+  background: rgb(66, 185, 173);
+  outline: none;
+  border: none;
+  color: rgb(221, 211, 211);
+}
+
+/* ===== MEDIA QUERY ====== */
+
+@media screen and (max-width: 900px) {
+  .content_container {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .content_container img {
+    height: 100%;
+  }
+
+  .cto_content {
+    display: none;
+  }
+
+  .swiper {
+    height: 90%;
+  }
+
+  .containerx {
+    padding: 0 1.5rem;
+  }
+
+  .nav_menu {
+    position: fixed;
+    left: -100%;
+    top: 3rem;
+    flex-direction: column;
+    background: var(--nav_bg);
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav_menu.active {
+    left: 0;
+  }
+
+  .nav_list {
+    margin: 1.5rem 0;
+  }
+
+  .toggle_menu {
+    display: block;
+    cursor: pointer;
+  }
+
+  .user_icony {
+    display: none;
+  }
+
+  .toggle_menu.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .toggle_menu.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background: var(--text_color);
+  }
+
+  .toggle_menu.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background: var(--text_color);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjustments for smaller screens */
+  .nav_body {
+    padding: 0 1rem;
+  }
+
+  /* .nav_menu {
+    display: none;
+  } */
+
+  /* .toggle_menu {
+    display: flex;
+  } */
+
+  .nav_list {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .nav_link {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  /* .nav_icon {
+    display: none;
+  } */
+
+  .swiper {
+    height: 50%;
+  }
+
+  .cto_content {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cto_btn {
+    width: 100%;
+  }
+
+  .client_logo {
+    padding: 1rem 0;
+  }
+
+  .product_items,
+  .popular_item {
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjustments for even smaller screens */
+  .swiper {
+    height: 30%;
+  }
+
+  .cto_content {
+    font-size: 14px;
+  }
+
+  .client_logo {
+    padding: 0.5rem 0;
+  }
+
+  .product_items {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CSS FILE */
+
+/* Add this media query for 360px screen size */
+@media only screen and (max-width: 360px) {
+  body {
+    font-size: 8px;
+  }
+
+  .containerx {
+    padding: 0 1rem;
+  }
+
+  /* .nav_menu {
+    display: none;
+  } */
+
+  /* .toggle_menu {
+    display: block;
+  } */
+
+  /* .nav_body {
+    flex-direction: column;
+  } */
+
+  /* .nav_icon {
+    margin-top: 1rem;
+  } */
+
+  .swiper {
+    height: 50%;
+  }
+
+  .content_container {
+    width: 100%;
+  }
+
+  .cto_content {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .cto_btn {
+    font-size: 10px;
+    padding: 0.5rem 1rem;
+  }
+
+  .client_logo {
+    padding: 1rem 0;
+  }
+
+  .products_con {
+    padding: 1rem 0;
+  }
+
+  .products {
+    margin-bottom: 1rem;
+  }
+
+  .product_items {
+    flex-direction: column;
+  }
+
+  .veiwall {
+    margin-top: 1rem;
+  }
+
+  .popular_item {
+    flex-direction: column;
+  }
+
+  .experience {
+    padding: 1rem 0;
+  }
+
+  .footer_top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer_bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subscribe input {
+    width: 100%;
+  }
+
+  .footer-head-font {
+    font-size: 10px;
+  }
+
+  .footer-body-font {
+    font-size: 6px;
+  }
+}
+
+
+JS ==============================
+const btnCart = document.querySelector("#cart-icon");
+const cart = document.querySelector(".cart");
+const btnClose = document.querySelector("#cart-close");
+
+btnCart.addEventListener("click", () => {
+  cart.classList.add("cart-active");
+});
+
+btnClose.addEventListener("click", () => {
+  cart.classList.remove("cart-active");
+});
+
+document.addEventListener("DOMContentLoaded", loadProduct);
+
+function loadProduct() {
+  loadContent();
+}
+
+function loadContent() {
+  //Remove  Items  From Cart
+  let btnRemove = document.querySelectorAll(".cart-remove");
+  btnRemove.forEach((btn) => {
+    btn.addEventListener("click", removeItem);
+  });
+
+  //Product Item Change Event
+  let qtyElements = document.querySelectorAll(".cart-quantity");
+  qtyElements.forEach((input) => {
+    input.addEventListener("change", changeQty);
+  });
+
+  //Product Cart
+
+  let cartBtns = document.querySelectorAll(".add_cart");
+  cartBtns.forEach((btn) => {
+    btn.addEventListener("click", addCart);
+  });
+
+  updateTotal();
+}
+
+//Remove Item
+function removeItem() {
+  if (confirm("Are Your Sure to Remove")) {
+    let title = this.parentElement.querySelector(
+      ".cart-product-title"
+    ).innerHTML;
+    itemList = itemList.filter((el) => el.title != title);
+    this.parentElement.remove();
+    loadContent();
+  }
+}
+
+//Change Quantity
+function changeQty() {
+  if (isNaN(this.value) || this.value < 1) {
+    this.value = 1;
+  }
+  loadContent();
+}
+
+let itemList = [];
+
+//Add Cart
+function addCart() {
+  let product = this.parentElement;
+  let title = product.querySelector(".product_name").innerHTML;
+  let price = product.querySelector(".product_price").innerHTML;
+  let imgSrc = product.querySelector("#product_img");
+  console.log(title, price, imgSrc);
+
+  let newProduct = { title, price, imgSrc };
+
+  //Check Product already Exist in Cart
+  if (itemList.find((el) => el.title == newProduct.title)) {
+    alert("Product Already added in Cart");
+    return;
+  } else {
+    itemList.push(newProduct);
+  }
+
+  let newProductElement = createCartProduct(title, price, imgSrc);
+  let element = document.createElement("div");
+  element.innerHTML = newProductElement;
+  let cartBasket = document.querySelector(".cart-content");
+  cartBasket.append(element);
+  loadContent();
+}
+
+function createCartProduct(title, price, imgSrc) {
+  return `
+  <div class="cart-box">
+  <img src= ${imgSrc} class="cart-img">
+  <div class="detail-box">
+    <div class="cart-product-title">${title}</div>
+    <div class="price-box">
+      <div class="cart-price">${price}</div>
+       <div class="cart-amt">${price}</div>
+   </div>
+    <input type="number" value="1" class="cart-quantity">
+  </div>
+  
+  <i class='bx bxs-trash cart-remove '  name="trash" ></i>
+</div>
+`;
+}
+
+function updateTotal() {
+  const cartItems = document.querySelectorAll(".cart-box");
+  const totalValue = document.querySelector(".total-price");
+
+  let total = 0;
+
+  cartItems.forEach((products) => {
+    let priceElement = products.querySelector(".cart-price");
+    let price = parseFloat(priceElement.innerHTML.replace("₦.", ""));
+    let qty = products.querySelector(".cart-quantity").value;
+    total += price * qty;
+    products.querySelector(".cart-amt").innerText = "₦." + price * qty;
+  });
+
+  totalValue.innerHTML = "₦." + total;
+
+  // Add Product Count in Cart Icon
+
+  const cartCount = document.querySelector(".my-cart-badge");
+  let count = itemList.length;
+  cartCount.innerHTML = count;
+
+  if (count == 0) {
+    cartCount.style.display = "none";
+  } else {
+    cartCount.style.display = "block";
+  }
+}
+
+

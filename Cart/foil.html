@@ -1,22 +1,15 @@
-<!-- HTML PRODUCT PAGE -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foil card</title>
-
-    <!-- ===CSS LINKING === -->
-    <link rel="stylesheet" href="foil.css" />
-    <!-- <link rel="stylesheet" href="../style.css" /> -->
     <!-- === BOXICON CDN ==== -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-
-    <!-- ======= FONT LINK ==== -->
+    <link rel="stylesheet" href="foil.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,7 +17,9 @@
       rel="stylesheet"
     />
   </head>
-  <body class="body">
+  <body>
+    <!-- Rest of your HTML code -->
+
     <div>
       <nav class="hide">
         <div class="nav_body containerx">
@@ -49,17 +44,14 @@
             </li>
 
             <li class="nav_list">
-              <a href="../ALL PRODUCT/all_product.html" class="nav_link">ALL PRODUCTS</a>
+              <a href="../ALL PRODUCT/all_product.html" class="nav_link"
+                >ALL PRODUCTS</a
+              >
             </li>
 
-           
             <li class="nav_list">
               <a href="../ACCOUNT/home.html" class="nav_link">DASHBOARD</a>
             </li>
-
-          
-
-            
 
             <li class="nav_list">
               <a href="#" class="nav_link">ABOUT</a>
@@ -73,29 +65,29 @@
             <a href="../ACCOUNT/account.html"
               ><i class="bx user_icony bx-user bx-sm"></i
             ></a>
-                <div class="boxx"> 
-                  <span class="my-cart-badge">0</span>
-                  <i class="bx bx-shopping-bag bx-sm" name="cart"  id="cart-icon"></i>
-                </div>
-                <!--===== THIS IS CART ========= -->
-                <div class="cart">
-                  <div class="cart-title">Cart Items</div>
-                  <div class="cart-content">
-        
-                  </div>
-                  
-                <div class="total">
-                  <div class="total-title">Total</div>
-                  <div class="total-price">₦0</div>
-                </div>
-          
-                <button class="btn-buy">Place Order</button>
-                <i class='bx bx-x'  name="close" id="cart-close" ></i>
-          
-                </div>
+            <div class="boxx">
+              <span class="my-cart-badge">0</span>
+              <i
+                class="bx bx-shopping-bag bx-sm"
+                name="cart"
+                id="cart-icon"
+              ></i>
+            </div>
+            <!--===== THIS IS CART ========= -->
+            <div class="cart">
+              <div class="cart-title">Cart Items</div>
+              <div class="cart-content"></div>
 
-                <!-- ===== CART ENDS HERE ======= -->
-           
+              <div class="total">
+                <div class="total-title">Total</div>
+                <div class="total-price">₦0</div>
+              </div>
+
+              <button class="btn-buy">Place Order</button>
+              <i class="bx bx-x" name="close" id="cart-close"></i>
+            </div>
+
+            <!-- ===== CART ENDS HERE ======= -->
           </div>
         </div>
         <!-- NAV BODY ENDS HERE -->
@@ -105,7 +97,7 @@
     <section>
       <div class="cart_body containerx" data-id="foil">
         <div class="left">
-          <img src="../Assests/H1.webp"  class="product_img" id="product-img"  />
+          <img src="../Assests/H1.webp" class="product_img" id="product-img" />
         </div>
         <div class="right">
           <h6>VEEZEDIT</h6>
@@ -244,7 +236,9 @@
               </div>
             </div>
           </form>
-          <button type="button"  name="cart"  class="add_cart"> Add to Cart</button>
+          <button type="button" name="cart" class="add_cart">
+            Add to Cart
+          </button>
 
           <strong class="product_price">₦37,700.00</strong>
           <a href="#">Shipping</a>
@@ -265,10 +259,6 @@
       </div>
     </section>
 
-  
- 
-
-</head>
     <script src="cart.js"></script>
     <script src="../script.js"></script>
   </body>

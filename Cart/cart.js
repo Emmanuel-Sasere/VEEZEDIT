@@ -17,21 +17,17 @@ function loadProduct() {
 }
 
 function loadContent() {
-  //Remove  Items  From Cart
-  let btnRemove = document.querySelectorAll(".cart-remove");
+  const btnRemove = document.querySelectorAll(".cart-remove");
   btnRemove.forEach((btn) => {
     btn.addEventListener("click", removeItem);
   });
 
-  //Product Item Change Event
-  let qtyElements = document.querySelectorAll(".cart-quantity");
+  const qtyElements = document.querySelectorAll(".cart-quantity");
   qtyElements.forEach((input) => {
     input.addEventListener("change", changeQty);
   });
 
-  //Product Cart
-
-  let cartBtns = document.querySelectorAll(".add_cart");
+  const cartBtns = document.querySelectorAll(".add_cart");
   cartBtns.forEach((btn) => {
     btn.addEventListener("click", addCart);
   });
@@ -39,10 +35,9 @@ function loadContent() {
   updateTotal();
 }
 
-//Remove Item
 function removeItem() {
-  if (confirm("Are Your Sure to Remove")) {
-    let title = this.parentElement.querySelector(
+  if (confirm("Are you sure you want to remove this item?")) {
+    const title = this.parentElement.querySelector(
       ".cart-product-title"
     ).innerHTML;
     itemList = itemList.filter((el) => el.title != title);
@@ -51,7 +46,6 @@ function removeItem() {
   }
 }
 
-//Change Quantity
 function changeQty() {
   if (isNaN(this.value) || this.value < 1) {
     this.value = 1;
@@ -61,47 +55,44 @@ function changeQty() {
 
 let itemList = [];
 
-//Add Cart
 function addCart() {
-  let product = this.parentElement;
-  let title = product.querySelector(".product_name").innerHTML;
-  let price = product.querySelector(".product_price").innerHTML;
-  let imgSrc = product.querySelector("#product_img");
-  // console.log(title, price, imgSrc);
-  let newProduct = { title, price, imgSrc };
+  const product = this.parentElement;
+  const title = product.querySelector(".product_name").innerHTML;
+  const price = product.querySelector(".product_price").innerHTML;
+  const imgSrc = product.querySelector("#product-img");
 
-  //Check Product already Exist in Cart
+  const newProduct = { title, price, imgSrc };
+
   if (itemList.find((el) => el.title == newProduct.title)) {
-    alert("Product Already added in Cart");
+    alert("Product already added to cart");
     return;
   } else {
     itemList.push(newProduct);
   }
 
-  let newProductElement = createCartProduct(title, price, imgSrc);
-  let element = document.createElement("div");
+  const newProductElement = createCartProduct(title, price, imgSrc);
+  const element = document.createElement("div");
   element.innerHTML = newProductElement;
-  let cartBasket = document.querySelector(".cart-content");
+  const cartBasket = document.querySelector(".cart-content");
   cartBasket.append(element);
   loadContent();
 }
 
 function createCartProduct(title, price, imgSrc) {
   return `
-  <div class="cart-box">
-  <img src= ${imgSrc} class="cart-img">
-  <div class="detail-box">
-    <div class="cart-product-title">${title}</div>
-    <div class="price-box">
-      <div class="cart-price">${price}</div>
-       <div class="cart-amt">${price}</div>
-   </div>
-    <input type="number" value="1" class="cart-quantity">
-  </div>
-  
-  <i class='bx bxs-trash cart-remove '  name="trash" ></i>
-</div>
-`;
+    <div class="cart-box">
+      <img src="${imgSrc}" class="cart-img">
+      <div class="detail-box">
+        <div class="cart-product-title">${title}</div>
+        <div class="price-box">
+          <div class="cart-price">${price}</div>
+          <div class="cart-amt">${price}</div>
+        </div>
+        <input type="number" value="1" class="cart-quantity">
+      </div>
+      <i class="bx bxs-trash cart-remove" name="trash"></i>
+    </div>
+  `;
 }
 
 function updateTotal() {
@@ -111,24 +102,21 @@ function updateTotal() {
   let total = 0;
 
   cartItems.forEach((products) => {
-    let priceElement = products.querySelector(".cart-price");
-    let price = parseFloat(priceElement.innerHTML.replace("₦.", ""));
-    let qty = products.querySelector(".cart-quantity").value;
+    const priceElement = products.querySelector(".cart-price");
+    const price = parseFloat(
+      priceElement.innerHTML.replace("₦", "").replace(",", "")
+    );
+    const qty = products.querySelector(".cart-quantity").value;
     total += price * qty;
-    products.querySelector(".cart-amt").innerText = "₦." + price * qty;
+    products.querySelector(".cart-amt").innerText =
+      "₦" + (price * qty).toFixed(2);
   });
 
-  totalValue.innerHTML = "₦." + total;
-
-  // Add Product Count in Cart Icon
+  totalValue.innerHTML = "₦" + total.toFixed(2);
 
   const cartCount = document.querySelector(".my-cart-badge");
-  let count = itemList.length;
+  const count = itemList.length;
   cartCount.innerHTML = count;
 
-  if (count == 0) {
-    cartCount.style.display = "none";
-  } else {
-    cartCount.style.display = "block";
-  }
+  cartCount.style.display = count > 0 ? "block" : "none";
 }
