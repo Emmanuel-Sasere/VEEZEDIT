@@ -50,6 +50,12 @@
             </li>
 
             <li class="nav_list">
+              <a href="../veezedit online editor/veezedit.html" class="nav_link"
+                >IMAGE EDITOR</a
+              >
+            </li>
+
+            <li class="nav_list">
               <a href="../ACCOUNT/home.html" class="nav_link">DASHBOARD</a>
             </li>
 
@@ -163,8 +169,8 @@
                   <p class="p">(2-4) Days Turnaround</p>
 
                   <ul>
-                    <li>4 fun Shapes & Sizes</li>
-                    <li>16 pt Smooth/ Dull Matte</li>
+                    <li>8 fun Shapes & Sizes</li>
+                    <li>32 pt Smooth/ Dull Matte</li>
                     <li>Add Round Corners & Spot UV</li>
                     <li>Full Color + Double-Sided</li>
                   </ul>
@@ -190,8 +196,8 @@
                   <select name="quantity" id="quantity">
                     <option value="100">100</option>
                     <option value="250">250</option>
-                    <option value="500">500 (+15,400)</option>
-                    <option value="1000">1000 (+30,800)</option>
+                    <option value="500">500 (+35,400)</option>
+                    <option value="1000">1000 (+50,800)</option>
                   </select>
                 </div>
               </div>
@@ -202,8 +208,8 @@
                   <p class="p">(2-4) Days Turnaround</p>
 
                   <ul>
-                    <li>4 fun Shapes & Sizes</li>
-                    <li>16 pt Smooth/ Dull Matte</li>
+                    <li>12 fun Shapes & Sizes</li>
+                    <li>48 pt Smooth/ Dull Matte</li>
                     <li>Add Round Corners & Spot UV</li>
                     <li>Full Color + Double-Sided</li>
                   </ul>
@@ -229,8 +235,8 @@
                   <select name="quantity" id="quantity">
                     <option value="100">100</option>
                     <option value="250">250</option>
-                    <option value="500">500 (+15,400)</option>
-                    <option value="1000">1000 (+30,800)</option>
+                    <option value="500">500 (+50,400)</option>
+                    <option value="1000">1000 (+100,800)</option>
                   </select>
                 </div>
               </div>
@@ -258,6 +264,26 @@
         </div>
       </div>
     </section>
+
+    <script>
+      function basic() {
+        document.querySelector(".box_basic").style.display = "block";
+        document.querySelector(".box_standard").style.display = "none";
+        document.querySelector(".box_premium").style.display = "none";
+      }
+
+      function standard() {
+        document.querySelector(".box_basic").style.display = "none";
+        document.querySelector(".box_standard").style.display = "block";
+        document.querySelector(".box_premium").style.display = "none";
+      }
+
+      function Premium() {
+        document.querySelector(".box_basic").style.display = "none";
+        document.querySelector(".box_standard").style.display = "none";
+        document.querySelector(".box_premium").style.display = "block";
+      }
+    </script>
 
     <script src="cart.js"></script>
     <script src="../script.js"></script>

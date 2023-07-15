@@ -423,6 +423,12 @@ h5 {
   justify-content: space-between;
 }
 
+.btn_send {
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
 /* ===== MEDIA QUERY ====== */
 
 @media screen and (max-width: 900px) {
@@ -458,7 +464,7 @@ h5 {
     height: 100%;
     text-align: center;
     transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 27px rgba(118, 194, 181, 0.05);
   }
 
   .nav_menu.active {
@@ -466,7 +472,7 @@ h5 {
   }
 
   .nav_list {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
   }
 
   .toggle_menu {
@@ -484,12 +490,12 @@ h5 {
 
   .toggle_menu.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
-    background: var(--text_color);
+    background: turquoise;
   }
 
   .toggle_menu.active .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
-    background: var(--text_color);
+    background: turquoise;
   }
 }
 

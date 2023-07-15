@@ -1,0 +1,34 @@
+.search-container {
+  position: relative;
+}
+
+#searchInput {
+  display: none;
+  border: 2px solid turquoise;
+  margin-right: 100px;
+  width: 250px;
+  padding: 10px 0;
+  color: rgb(198, 191, 191);
+}
+
+#searchIcon {
+  cursor: pointer;
+}
+
+.searchbx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchInput.show-search {
+  display: block;
+}
+
+#searchResults.show-search {
+  display: block;
+  color: rgb(210, 202, 202);
+}
+#searchResults .show-search li {
+  color: inherit;
+}

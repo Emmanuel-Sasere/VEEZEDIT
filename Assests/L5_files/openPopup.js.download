@@ -1,8 +1,0 @@
-function openPopup(shareUrl) {
-    let window_size = "width=565,height=569";
-    window.open(
-      shareUrl,
-      "",
-      "menubar=no,resizeable=yes,scrollbars=yes," + window_size
-    );
-}

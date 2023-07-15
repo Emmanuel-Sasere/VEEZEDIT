@@ -27,6 +27,12 @@
       rel="stylesheet"
     />
 
+    <!-- SEARCH CSS ==== -->
+    <link rel="stylesheet" href="Search/search.css" />
+
+    <!-- CART CSS -->
+    <link rel="stylesheet" href="Cart/foil.css" />
+
     <!-- CSS LINK -->
     <link rel="stylesheet" href="style.css" />
 
@@ -46,21 +52,21 @@
     <nav>
       <div class="nav_body containerx">
         <!-- ==== TOGGLE MENU === -->
-        <div class="toggle_menu">
+        <div class="toggle_menu hide-on-search">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </div>
 
         <!-- ==== LOGO ==== -->
-        <div class="logo">
+        <div class="logo hide-on-search">
           <a href="index.html"
             ><img src="Assests/VE Logo Original.png" alt=""
           /></a>
         </div>
 
         <!-- ===== MENU NAVIGATION ========= -->
-        <ul class="nav_menu">
+        <ul class="nav_menu hide-on-search">
           <li class="nav_list">
             <a href="index.html" class="nav_link">HOME</a>
           </li>
@@ -73,7 +79,7 @@
 
           <li class="nav_list">
             <a href="./Veezedit online editor/veezedit.html" class="nav_link"
-              >ONLINE IMAGE EDITOR</a
+              >IMAGE EDITOR</a
             >
           </li>
 
@@ -88,12 +94,31 @@
 
         <!--  ===== NAVIGATION ICON ====== -->
 
-        <div class="nav_icon">
-          <i class="bx bx-search-alt-2 bx-sm"></i>
-          <a href="ACCOUNT/account.html"
-            ><i class="bx user_icony bx-user bx-sm"></i
-          ></a>
-          <i class="bx bx-shopping-bag bx-sm"></i>
+        <div class="hide-on-search">
+          <div class="nav_icon">
+            <!-- <i class="bx bx-search-alt-2 bx-sm"></i> -->
+            <div class="searchbx">
+              <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search..." />
+                <ul id="searchResults"></ul>
+              </div>
+              <div id="searchIcon">
+                <i class="bx bx-search-alt-2 bx-sm"></i>
+                <!-- Add the desired icon class here -->
+              </div>
+            </div>
+            <a href="ACCOUNT/account.html"
+              ><i class="bx user_icony bx-user bx-sm"></i
+            ></a>
+            <div class="boxx">
+              <span class="my-cart-badge">0</span>
+              <i
+                class="bx bx-shopping-bag bx-sm"
+                name="cart"
+                id="cart-icon"
+              ></i>
+            </div>
+          </div>
         </div>
       </div>
       <!-- NAV BODY ENDS HERE -->
@@ -217,7 +242,7 @@
             </div>
 
             <div class="item">
-              <a href="#">
+              <a href="./Cart/foil.html">
                 <img src="Assests/H1.webp" alt="" />
                 <h4>Spot UV Business Card</h4>
                 <p>₦38,000</p>
@@ -368,7 +393,7 @@
           <div class="left">
             <h5>Quick Links</h5>
             <p><a href="">Search</a></p>
-            <p><a href="../VEEZEDIT/Contact Us/contact.html">Contact US</a></p>
+            <p><a href="Contact Us/contact.html">Contact US</a></p>
             <p><a href="">Terms and Service</a></p>
           </div>
           <div class="middle">
@@ -386,13 +411,18 @@
           <div class="subscribe">
             <h5>Subscribe for deals & design tips</h5>
             <form
-              action="https://formsubmit.co/emmanuelscript.code@gmail.com"
+              action="https://formspree.io/f/xgejeqwy"
               method="POST"
               class="f_form"
             >
-              <input type="email" placeholder="Enter email" class="sub" /><i
-                class="bx bx-right-arrow-alt bx-sm"
-              ></i>
+              <input
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                class="sub"
+              /><button type="submit" name="submit" class="btn_send">
+                <i class="bx bx-right-arrow-alt bx-sm"></i>
+              </button>
             </form>
           </div>
           <div class="media">
@@ -402,6 +432,23 @@
       </div>
     </footer>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cartCount = document.querySelector(".my-cart-badge");
+
+        // Retrieve the stored itemList from localStorage
+        const storedItems = localStorage.getItem("cartItems");
+
+        // If there are stored items, update the cart count
+        if (storedItems) {
+          const itemList = JSON.parse(storedItems);
+          const count = itemList.length;
+          cartCount.innerHTML = count;
+          cartCount.style.display = count > 0 ? "block" : "none";
+        }
+      });
+    </script>
+
     <!-- ===== SWIPER JS CDN ====== -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
@@ -410,6 +457,7 @@
 
     <!-- === SCRIPT JS LINK ==== -->
     <script src="script.js"></script>
+    <script src="Search/serch.js"></script>
 
     <!-- CHATBOT JS ===== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

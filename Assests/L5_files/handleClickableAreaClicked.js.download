@@ -1,9 +1,0 @@
-function handleClickableAreaClicked() {
-    var customizedMsgDiv = document.getElementById("customized_msg_div");
-    var customizedMsgNote = document.getElementById("id_span_notetext");
-    //setup emoji picker
-    customizedMsgNote.style.display = "none";
-    customizedMsgDiv.style.display = "block";
-    emojiDisplay();
-    toggleContentShareMsg = shareCartCurrentStateData.customCartMessageStatus;
-}

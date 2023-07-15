@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search</title>
+    <!-- === BOXICON CDN ==== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .search-container {
+        position: relative;
+      }
+
+      #searchInput {
+        display: none;
+        border: 2px solid turquoise;
+        margin-right: 100px;
+        width: 250px;
+        padding: 10px 0;
+        color: rgb(198, 191, 191);
+      }
+
+      #searchIcon {
+        cursor: pointer;
+      }
+
+      .searchbx {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #searchInput.show-search {
+        display: block;
+      }
+
+      #searchResults.show-search {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="searchbx">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search..." />
+          <ul id="searchResults"></ul>
+        </div>
+        <div id="searchIcon">
+          <i class="bx bx-search-alt-2 bx-sm"></i>
+          <!-- Add the desired icon class here -->
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      //   const searchInput = document.getElementById("searchInput");
+      //   const searchResults = document.getElementById("searchResults");
+      //   const searchIcon = document.getElementById("searchIcon");
+
+      const searchInput = document.getElementById("searchInput");
+      const searchResults = document.getElementById("searchResults");
+      const searchIcon = document.getElementById("searchIcon");
+
+      // Function to toggle search bar visibility
+      function toggleSearch() {
+        searchInput.classList.toggle("show-search");
+        searchResults.classList.toggle("show-search");
+      }
+
+      // Hide search input and results initially
+      searchInput.classList.remove("show-search");
+      searchResults.classList.remove("show-search");
+
+      // Event listener for search icon
+      searchIcon.addEventListener("click", toggleSearch);
+
+      // Function to toggle search bar visibility
+      //   function toggleSearch() {
+      //     searchInput.classList.toggle("show-search");
+      //     searchResults.classList.toggle("show-search");
+      //   }
+
+      // Event listener for search icon
+      //   searchIcon.addEventListener("click", toggleSearch);
+
+      // Function to perform search
+      function performSearch() {
+        const searchText = searchInput.value.toLowerCase();
+        const searchItems = document.querySelectorAll("h1, h2, p"); // Update with desired elements to search
+
+        // Clear previous search results
+        searchResults.innerHTML = "";
+
+        // Perform search and display results
+        searchItems.forEach((item) => {
+          const itemText = item.textContent.toLowerCase();
+          if (itemText.includes(searchText)) {
+            const li = document.createElement("li");
+            const link = document.createElement("a");
+            link.href = "#" + item.id; // Add appropriate link target based on your website's structure
+            link.textContent = itemText;
+            li.appendChild(link);
+            searchResults.appendChild(li);
+          }
+        });
+
+        if (searchResults.children.length === 0) {
+          const li = document.createElement("li");
+          li.textContent = "No results found.";
+          searchResults.appendChild(li);
+        }
+      }
+
+      // Event listener for search input
+      searchInput.addEventListener("input", performSearch);
+    </script>
+  </body>
+</html>

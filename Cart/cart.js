@@ -10,29 +10,34 @@ btnClose.addEventListener("click", () => {
   cart.classList.remove("cart-active");
 });
 
-document.addEventListener("DOMContentLoaded", loadProduct);
+document.addEventListener("DOMContentLoaded", loadProducts);
 
-function loadProduct() {
-  loadContent();
+function loadProducts() {
+  const products = [
+    {
+      title: "Foil Business Card",
+      price: "37,700",
+      imgSrc: "../Assests/H1.webp",
+    },
+    {
+      title: "Product 2",
+      price: "Price 2",
+      imgSrc: "image2.jpg",
+    },
+    // Add more products here
+  ];
+
+  loadContent(products);
+  itemList = getCartItems();
+  displayCartItems();
+  updateCartIcon();
 }
 
-function loadContent() {
-  const btnRemove = document.querySelectorAll(".cart-remove");
-  btnRemove.forEach((btn) => {
-    btn.addEventListener("click", removeItem);
-  });
-
-  const qtyElements = document.querySelectorAll(".cart-quantity");
-  qtyElements.forEach((input) => {
-    input.addEventListener("change", changeQty);
-  });
-
+function loadContent(products) {
   const cartBtns = document.querySelectorAll(".add_cart");
-  cartBtns.forEach((btn) => {
-    btn.addEventListener("click", addCart);
+  cartBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => addCart(products[index]));
   });
-
-  updateTotal();
 }
 
 function removeItem() {
@@ -40,9 +45,11 @@ function removeItem() {
     const title = this.parentElement.querySelector(
       ".cart-product-title"
     ).innerHTML;
-    itemList = itemList.filter((el) => el.title != title);
+    itemList = itemList.filter((el) => el.title !== title);
     this.parentElement.remove();
-    loadContent();
+    updateTotal();
+    saveCartItems();
+    updateCartIcon();
   }
 }
 
@@ -50,20 +57,18 @@ function changeQty() {
   if (isNaN(this.value) || this.value < 1) {
     this.value = 1;
   }
-  loadContent();
+  updateTotal();
+  saveCartItems();
 }
 
 let itemList = [];
 
-function addCart() {
-  const product = this.parentElement;
-  const title = product.querySelector(".product_name").innerHTML;
-  const price = product.querySelector(".product_price").innerHTML;
-  const imgSrc = product.querySelector("#product-img");
+function addCart(product) {
+  const { title, price, imgSrc } = product;
 
   const newProduct = { title, price, imgSrc };
 
-  if (itemList.find((el) => el.title == newProduct.title)) {
+  if (itemList.find((el) => el.title === newProduct.title)) {
     alert("Product already added to cart");
     return;
   } else {
@@ -75,7 +80,9 @@ function addCart() {
   element.innerHTML = newProductElement;
   const cartBasket = document.querySelector(".cart-content");
   cartBasket.append(element);
-  loadContent();
+  updateTotal();
+  saveCartItems();
+  updateCartIcon();
 }
 
 function createCartProduct(title, price, imgSrc) {
@@ -101,22 +108,48 @@ function updateTotal() {
 
   let total = 0;
 
-  cartItems.forEach((products) => {
-    const priceElement = products.querySelector(".cart-price");
+  cartItems.forEach((product) => {
+    const priceElement = product.querySelector(".cart-price");
     const price = parseFloat(
       priceElement.innerHTML.replace("₦", "").replace(",", "")
     );
-    const qty = products.querySelector(".cart-quantity").value;
+    const qty = product.querySelector(".cart-quantity").value;
     total += price * qty;
-    products.querySelector(".cart-amt").innerText =
+    product.querySelector(".cart-amt").innerText =
       "₦" + (price * qty).toFixed(2);
   });
 
   totalValue.innerHTML = "₦" + total.toFixed(2);
+}
 
+function saveCartItems() {
+  localStorage.setItem("cartItems", JSON.stringify(itemList));
+}
+
+function getCartItems() {
+  const storedItems = localStorage.getItem("cartItems");
+  return storedItems ? JSON.parse(storedItems) : [];
+}
+
+function displayCartItems() {
+  const cartBasket = document.querySelector(".cart-content");
+  cartBasket.innerHTML = "";
+  itemList.forEach((product) => {
+    const { title, price, imgSrc } = product;
+    const newProductElement = createCartProduct(title, price, imgSrc);
+    const element = document.createElement("div");
+    element.innerHTML = newProductElement;
+    const removeBtn = element.querySelector(".cart-remove");
+    removeBtn.addEventListener("click", removeItem);
+    cartBasket.append(element);
+  });
+}
+
+function updateCartIcon() {
+  const cartIcon = document.querySelector("#cart-icon");
   const cartCount = document.querySelector(".my-cart-badge");
   const count = itemList.length;
   cartCount.innerHTML = count;
-
   cartCount.style.display = count > 0 ? "block" : "none";
+  cartIcon.classList.toggle("cart-has-items", count > 0);
 }

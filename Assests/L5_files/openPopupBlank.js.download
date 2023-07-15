@@ -1,8 +1,0 @@
-function openPopupBlank() {
-    let window_size = "width=565,height=569";
-    return window.open(
-      "",
-      "",
-      "menubar=no,resizeable=yes,scrollbars=yes," + window_size
-    );
-}
