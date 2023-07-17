@@ -396,6 +396,7 @@ h5 {
 .footer_top a {
   margin-top: 5px;
   color: var(--text_color);
+  font-size: 10px;
 }
 
 .footer_top a:hover {

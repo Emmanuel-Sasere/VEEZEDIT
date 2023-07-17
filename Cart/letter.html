@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foil card</title>
+    <!-- === BOXICON CDN ==== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="foil.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Rest of your HTML code -->
+
+    <div>
+      <nav class="hide">
+        <div class="nav_body containerx">
+          <!-- ==== TOGGLE MENU === -->
+          <div class="toggle_menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+
+          <!-- ==== LOGO ==== -->
+          <div class="logo">
+            <a href="../index.html"
+              ><img src="../Assests/VE Logo Original.png" alt=""
+            /></a>
+          </div>
+
+          <!-- ===== MENU NAVIGATION ========= -->
+          <ul class="nav_menu">
+            <li class="nav_list">
+              <a href="../index.html" class="nav_link">HOME</a>
+            </li>
+
+            <li class="nav_list">
+              <a href="../ALL PRODUCT/all_product.html" class="nav_link"
+                >ALL PRODUCTS</a
+              >
+            </li>
+
+            <li class="nav_list">
+              <a href="../veezedit online editor/veezedit.html" class="nav_link"
+                >IMAGE EDITOR</a
+              >
+            </li>
+
+            <li class="nav_list">
+              <a href="../ACCOUNT/home.html" class="nav_link">DASHBOARD</a>
+            </li>
+
+            <li class="nav_list">
+              <a href="#" class="nav_link">ABOUT</a>
+            </li>
+          </ul>
+
+          <!--  ===== NAVIGATION ICON ====== -->
+
+          <div class="nav_icon">
+            <i class="bx bx-search-alt-2 bx-sm"></i>
+            <a href="../ACCOUNT/account.html"
+              ><i class="bx user_icony bx-user bx-sm"></i
+            ></a>
+            <div class="boxx">
+              <span class="my-cart-badge">0</span>
+              <i
+                class="bx bx-shopping-bag bx-sm"
+                name="cart"
+                id="cart-icon"
+              ></i>
+            </div>
+            <!--===== THIS IS CART ========= -->
+            <div class="cart">
+              <div class="cart-title">Cart Items</div>
+              <div class="cart-content"></div>
+
+              <div class="total">
+                <div class="total-title">Total</div>
+                <div class="total-price">₦0</div>
+              </div>
+
+              <a href="payment.html">
+                <button class="btn-buy">Place Order</button></a
+              >
+              <i class="bx bx-x" name="close" id="cart-close"></i>
+            </div>
+
+            <!-- ===== CART ENDS HERE ======= -->
+          </div>
+        </div>
+        <!-- NAV BODY ENDS HERE -->
+      </nav>
+    </div>
+
+    <section>
+      <div class="cart_body containerx" data-id="foil">
+        <div class="left">
+          <img
+            src="../Assests/letterpress-paper-samples-333568.webp"
+            class="product_img"
+            id="product-img"
+          />
+        </div>
+        <div class="right">
+          <h6>VEEZEDIT</h6>
+          <h2 class="product_name">Letter Paper Sample</h2>
+          <p>
+            The matte finish has a smooth but skighly dull surface to fit.
+            providing an anti-glare effect that makes it easier to read
+          </p>
+
+          <form class="form_cont">
+            <h4>Choose your mode</h4>
+            <div class="box_cont">
+              <div class="box" onclick="basic()">Basic</div>
+              <div class="box" onclick="standard()">Standard</div>
+              <div class="box" onclick="Premium()">Premium</div>
+            </div>
+
+            <hr />
+
+            <div class="box_all_cont">
+              <div class="box_basic">
+                <div class="basic_cont">
+                  <h5 class="h5">Quick & Cost Effective</h5>
+                  <p class="p">(2-4) Days Turnaround</p>
+
+                  <ul>
+                    <li>4 fun Shapes & Sizes</li>
+                    <li>16 pt Smooth/ Dull Matte</li>
+                    <li>Add Round Corners & Spot UV</li>
+                    <li>Full Color + Double-Sided</li>
+                  </ul>
+                  <hr />
+                  <label for="size">Size</label>
+                  <select name="size" id="size">
+                    <option value="2x3.5">2 x 3.5 in</option>
+                    <option value="2.5x2.5">2.5 x 2.5 in</option>
+                    <option value="1.5x3.5">1.5 x 3.5 in</option>
+                    <option value="2x2">2 x 2 in</option>
+                  </select>
+                  <hr />
+
+                  <label for="paper">Paper</label>
+                  <select name="paper" id="paper">
+                    <option value="16pt">16 pt Matte</option>
+                    <option value="17pt">17 pt Matte</option>
+                  </select>
+
+                  <hr />
+
+                  <label for="quantity">Quantity</label>
+                  <select name="quantity" id="quantity">
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500 (+15,400)</option>
+                    <option value="1000">1000 (+30,800)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="box_standard">
+                <div class="standard_cont">
+                  <h5 class="h5">Quick & Cost Effective</h5>
+                  <p class="p">(2-4) Days Turnaround</p>
+
+                  <ul>
+                    <li>8 fun Shapes & Sizes</li>
+                    <li>32 pt Smooth/ Dull Matte</li>
+                    <li>Add Round Corners & Spot UV</li>
+                    <li>Full Color + Double-Sided</li>
+                  </ul>
+                  <hr />
+                  <label for="size">Size</label>
+                  <select name="size" id="size">
+                    <option value="2x3.5">2 x 3.5 in</option>
+                    <option value="2.5x2.5">2.5 x 2.5 in</option>
+                    <option value="1.5x3.5">1.5 x 3.5 in</option>
+                    <option value="2x2">2 x 2 in</option>
+                  </select>
+                  <hr />
+
+                  <label for="paper">Paper</label>
+                  <select name="paper" id="paper">
+                    <option value="16pt">16 pt Matte</option>
+                    <option value="17pt">17 pt Matte</option>
+                  </select>
+
+                  <hr />
+
+                  <label for="quantity">Quantity</label>
+                  <select name="quantity" id="quantity">
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500 (+35,400)</option>
+                    <option value="1000">1000 (+50,800)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="box_premium">
+                <div class="premium_cont">
+                  <h5 class="h5">Quick & Cost Effective</h5>
+                  <p class="p">(2-4) Days Turnaround</p>
+
+                  <ul>
+                    <li>12 fun Shapes & Sizes</li>
+                    <li>48 pt Smooth/ Dull Matte</li>
+                    <li>Add Round Corners & Spot UV</li>
+                    <li>Full Color + Double-Sided</li>
+                  </ul>
+                  <hr />
+                  <label for="size">Size</label>
+                  <select name="size" id="size">
+                    <option value="2x3.5">2 x 3.5 in</option>
+                    <option value="2.5x2.5">2.5 x 2.5 in</option>
+                    <option value="1.5x3.5">1.5 x 3.5 in</option>
+                    <option value="2x2">2 x 2 in</option>
+                  </select>
+                  <hr />
+
+                  <label for="paper">Paper</label>
+                  <select name="paper" id="paper">
+                    <option value="16pt">16 pt Matte</option>
+                    <option value="17pt">17 pt Matte</option>
+                  </select>
+
+                  <hr />
+
+                  <label for="quantity">Quantity</label>
+                  <select name="quantity" id="quantity">
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500 (+50,400)</option>
+                    <option value="1000">1000 (+100,800)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+          <button type="button" name="cart" class="add_cart">
+            Add to Cart
+          </button>
+          <br />
+          <br />
+
+          <strong class="product_price">₦7,000.00</strong>
+
+          <!-- <h5><i class="bx bx-heart bx-sm"></i>100% Quality Guaranteed</h5>
+          <details>
+            <p>
+              We strive to produce high-quality products that not only meet, but
+              exceed, our customers' expectations, but we understand that there
+              may be times when you are not satisfied with your order. If you
+              are not satisfied with your custom product, please contact us
+              within 14 days of receiving your order and easily request a
+              reprint or refund.
+            </p>
+          </details> -->
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function basic() {
+        document.querySelector(".box_basic").style.display = "block";
+        document.querySelector(".box_standard").style.display = "none";
+        document.querySelector(".box_premium").style.display = "none";
+      }
+
+      function standard() {
+        document.querySelector(".box_basic").style.display = "none";
+        document.querySelector(".box_standard").style.display = "block";
+        document.querySelector(".box_premium").style.display = "none";
+      }
+
+      function Premium() {
+        document.querySelector(".box_basic").style.display = "none";
+        document.querySelector(".box_standard").style.display = "none";
+        document.querySelector(".box_premium").style.display = "block";
+      }
+    </script>
+
+    <script src="cart.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>
